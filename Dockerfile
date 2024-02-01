@@ -10,7 +10,7 @@ RUN npm install -g pnpm
 COPY frontend /app
 
 # Build Angular project
-RUN pnpm run build
+RUN pnpm i && pnpm run build
 
 FROM node:20 as builder-backend
 
@@ -24,7 +24,7 @@ RUN npm install -g pnpm
 COPY backend /app
 
 # Build backend project
-RUN pnpm run build
+RUN pnpm i && pnpm run build
 
 FROM node:20
 
