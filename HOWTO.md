@@ -8,7 +8,7 @@ Lors de la création de votre projet sur Github, vous devez respecter la structu
 votre_projet/
     | - .github/
     |   | - workflows/      # Dossier contenant les actions Github
-    |   |   | - build.yml   # Fichier de configuration de l'action Github
+    |   |   | - build.yaml   # Fichier de configuration de l'action Github
     | - backend/           # Dossier contenant le code backend
     |   | * Votre code backend *
     | - docker/           # Dossier contenant les fichiers de configuration
@@ -23,7 +23,7 @@ votre_projet/
 
 Vous devrez copier les fichiers suivants dans votre projet pour pouvoir déployer sur render.com:
 
-- [.github/workflows/build.yml](./.github/workflows/build.yml)
+- [.github/workflows/build.yaml](./.github/workflows/build.yaml)
 - [Dockerfile](./Dockerfile)
 - [.dockerignore](./.dockerignore)
 - [docker/nginx.conf](./docker/nginx.conf)
@@ -57,4 +57,4 @@ Collez votre URL dans le secret puis validez.
 
 Et voilà ! Votre projet va pouvoir se déployer sur render.com !
 
-Dès que vous pousserez du code dans la branche `main`, Github va lancer l'action `build.yml` qui va construire une nouvelle image docker et la pousser sur Github Container Registry. Une fois l'image poussée, Github va envoyer une notification à render.com qui va récupérer l'image et la déployer.
+Dès que vous pousserez du code dans la branche `main`, Github va lancer l'action `build.yaml` qui va construire une nouvelle image docker et la pousser sur Github Container Registry. Une fois l'image poussée, Github va envoyer une notification à render.com qui va récupérer l'image et la déployer.
