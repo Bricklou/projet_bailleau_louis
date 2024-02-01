@@ -29,6 +29,19 @@ Vous devrez copier les fichiers suivants dans votre projet pour pouvoir déploye
 - [docker/nginx.conf](./docker/nginx.conf)
 - [docker/supervisord.conf](./docker/supervisord.conf)
 
+Vous devrez également modifier le fichier `Dockerfile` pour qu'il corresponde à votre projet :
+
+Sur la ligne :
+
+```dockerfile
+# Copy projects
+COPY --from=builder-frontend /app/dist/projet-angular/browser/ /var/www/html
+```
+
+Vous devez remplacer `projet-angular` par le nom de votre projet Angular (le champ `name` dans le fichier `package.json`).
+
+Et pour finir, vérifiez que votre branche est bien `main` (ou modifier le fichier `.github/workflows/build.yaml` en conséquence)
+
 ## 3. Créez un nouveau dépôt sur render.com
 
 Ensuite, rendez vous sur [render.com](https://dashboard.render.com/) et créez un nouveau dépôt comme suit :
