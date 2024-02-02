@@ -49,7 +49,7 @@ Ensuite, rendez vous sur [render.com](https://dashboard.render.com/) et créez u
 ![Service menu](./.github/docs/service-menu.png)
 ![New service](./.github/docs/new-service.png)
 
-Sur l'écran suivant, vous devrez passer une URL au format `docker pull ghcr.io/pseudo_github/nom_du_depot:latest` dans le champ `Image URL`:
+Sur l'écran suivant, vous devrez passer une URL au format `ghcr.io/pseudo_github/nom_du_depot:latest` dans le champ `Image URL`:
 
 ![Deploy an image](./.github/docs/deploy-image.png)
 
