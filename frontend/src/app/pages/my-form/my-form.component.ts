@@ -3,54 +3,87 @@ import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
+  ValidatorFn,
   Validators,
 } from '@angular/forms';
-import { NgIconComponent, provideIcons } from '@ng-icons/core';
-import { lucideSend, lucideChevronDown } from '@ng-icons/lucide';
+import {
+  LucideAngularModule,
+  LucideChevronDown,
+  LucideSendHorizonal,
+} from 'lucide-angular';
+import { MustMatch } from '../../utils/validators/mustMatch';
 
 @Component({
   selector: 'app-my-form',
   standalone: true,
   templateUrl: './my-form.component.html',
   styleUrl: './my-form.component.css',
-  imports: [NgIconComponent, ReactiveFormsModule],
-  viewProviders: [provideIcons({ lucideSend, lucideChevronDown })],
+  imports: [ReactiveFormsModule, LucideAngularModule],
 })
 export class MyFormComponent {
-  protected myForm = new FormGroup({
-    nom: new FormControl('', [Validators.required, Validators.minLength(1)]),
-    prenom: new FormControl('', [Validators.required, Validators.minLength(1)]),
+  protected readonly LucideChevronDown = LucideChevronDown;
+  protected readonly LucideSendHorizontal = LucideSendHorizonal;
 
-    adresse: new FormControl('', [
-      Validators.required,
-      Validators.minLength(1),
-    ]),
-    codePostal: new FormControl<number | null>(null, [
-      Validators.required,
-      Validators.min(10000),
-      Validators.max(99999),
-    ]),
-    ville: new FormControl('', [Validators.required, Validators.minLength(1)]),
+  protected myForm = new FormGroup(
+    {
+      nom: new FormControl('', [Validators.required, Validators.minLength(1)]),
+      prenom: new FormControl('', [
+        Validators.required,
+        Validators.minLength(1),
+      ]),
 
-    telephone: new FormControl('', [
-      Validators.required,
-      Validators.minLength(1),
-    ]),
+      adresse: new FormControl('', [
+        Validators.required,
+        Validators.minLength(1),
+      ]),
+      codePostal: new FormControl<number | null>(null, [
+        Validators.required,
+        Validators.min(10000),
+        Validators.max(99999),
+      ]),
+      ville: new FormControl('', [
+        Validators.required,
+        Validators.minLength(1),
+      ]),
 
-    email: new FormControl('', [Validators.required, Validators.email]),
+      telephone: new FormControl('', [
+        Validators.required,
+        Validators.minLength(1),
+      ]),
 
-    civilite: new FormControl<'male' | 'female'>('male', [Validators.required]),
+      email: new FormControl('', [Validators.required, Validators.email]),
 
-    login: new FormControl('', [Validators.required, Validators.minLength(1)]),
-    password: new FormControl('', [
-      Validators.required,
-      Validators.minLength(1),
-    ]),
-    passwordConfirm: new FormControl('', [
-      Validators.required,
-      Validators.minLength(1),
-    ]),
-  });
+      civilite: new FormControl<'male' | 'female'>('male', [
+        Validators.required,
+      ]),
 
-  protected onSubmit() {}
+      login: new FormControl('', [
+        Validators.required,
+        Validators.minLength(1),
+      ]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(1),
+      ]),
+      passwordConfirmation: new FormControl('', [
+        Validators.required,
+        Validators.minLength(1),
+      ]),
+    },
+    {
+      validators: MustMatch('password', 'passwordConfirmation'),
+    }
+  );
+
+  protected changeCivilite(event: Event) {
+    const target = event.target as HTMLInputElement;
+    const value = target?.value;
+    if (value) {
+      this.myForm.get('civilite')?.setValue(value as 'male' | 'female');
+    }
+  }
+
+  protected onSubmit() {
+    console.log(this.myForm.valid, this.myForm.value);
+  }
 }

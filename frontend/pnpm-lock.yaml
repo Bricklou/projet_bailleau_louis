@@ -35,6 +35,9 @@ dependencies:
   '@ng-icons/lucide':
     specifier: ^26.3.0
     version: 26.3.0
+  lucide-angular:
+    specifier: ^0.325.0
+    version: 0.325.0(@angular/common@17.1.2)(@angular/core@17.1.2)
   rxjs:
     specifier: ~7.8.0
     version: 7.8.1
@@ -5779,6 +5782,17 @@ packages:
     dependencies:
       yallist: 4.0.0
     dev: true
+
+  /lucide-angular@0.325.0(@angular/common@17.1.2)(@angular/core@17.1.2):
+    resolution: {integrity: sha512-8DxzwkMHSLFW4ILjMKEg6OVNZEEE/O12W4oLWtbezaIMXWTNlWedS28wW2JLTEMe0ZyD4OBpSbxp42ufbq7s1A==}
+    peerDependencies:
+      '@angular/common': 13.x - 17.x
+      '@angular/core': 13.x - 17.x
+    dependencies:
+      '@angular/common': 17.1.2(@angular/core@17.1.2)(rxjs@7.8.1)
+      '@angular/core': 17.1.2(rxjs@7.8.1)(zone.js@0.14.3)
+      tslib: 2.6.2
+    dev: false
 
   /magic-string@0.30.5:
     resolution: {integrity: sha512-7xlpfBaQaP/T6Vh8MO/EqXSW5En6INHEvEXQiuff7Gku0PWjU3uf6w/j9o7O+SpB5fOAkrI5HeoNgwjEO0pFsA==}

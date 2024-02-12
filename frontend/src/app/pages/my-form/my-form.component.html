@@ -12,7 +12,14 @@
       <!-- Nom -->
       <div class="input">
         <label class="label" for="nom">Nom</label>
-        <input type="text" name="nom" id="nom" required formControlName="nom" />
+        <input
+          type="text"
+          name="nom"
+          id="nom"
+          required
+          formControlName="nom"
+          placeholder="Nom"
+        />
       </div>
       <!-- Prénom -->
       <div class="input">
@@ -23,6 +30,7 @@
           id="prenom"
           required
           formControlName="prenom"
+          placeholder="Prénom"
         />
       </div>
 
@@ -35,6 +43,7 @@
           id="adresse"
           required
           formControlName="adresse"
+          placeholder="Adresse"
         />
       </div>
 
@@ -47,6 +56,7 @@
           id="codePostal"
           required
           formControlName="codePostal"
+          placeholder="Code Postal"
         />
       </div>
 
@@ -59,6 +69,7 @@
           id="ville"
           required
           formControlName="ville"
+          placeholder="Ville"
         />
       </div>
 
@@ -71,6 +82,7 @@
           id="telephone"
           required
           formControlName="telephone"
+          placeholder="Téléphone"
         />
       </div>
 
@@ -83,6 +95,7 @@
           id="email"
           required
           formControlName="email"
+          placeholder="Email"
         />
       </div>
 
@@ -93,16 +106,14 @@
           name="civilite"
           id="civilite"
           required
+          (change)="changeCivilite($event)"
           formControlName="civilite"
         >
-          <option value="" disabled selected>
-            Séléctionnez votre civilité
-          </option>
-          <option value="Monsieur">Monsieur</option>
-          <option value="Madame">Madame</option>
+          <option ngValue="male">Monsieur</option>
+          <option ngValue="female">Madame</option>
         </select>
 
-        <ng-icon name="lucideChevronDown" class="select-arrow w-6 h-6" />
+        <lucide-icon [img]="LucideChevronDown" class="select-arrow w-6 h-6" />
       </div>
 
       <hr class="divider lg:col-span-2" />
@@ -116,6 +127,7 @@
           id="login"
           required
           formControlName="login"
+          placeholder="Login"
         />
       </div>
 
@@ -128,6 +140,7 @@
           id="motDePasse"
           required
           formControlName="password"
+          placeholder="Mot de passe"
         />
       </div>
 
@@ -140,14 +153,14 @@
           id="confirmation"
           required
           formControlName="passwordConfirmation"
+          placeholder="Confirmation"
         />
       </div>
 
       <div class="lg:col-span-2 flex justify-end">
         <button type="submit" class="button" [disabled]="!myForm.valid">
           Submit
-
-          <ng-icon name="lucideSend" class="w-6 h-6 ml-2" />
+          <lucide-icon [img]="LucideSendHorizontal" />
         </button>
       </div>
     </form>

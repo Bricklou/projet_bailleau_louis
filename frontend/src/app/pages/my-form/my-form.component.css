@@ -25,7 +25,7 @@
 }
 
 .input select + .select-arrow {
-  @apply absolute bottom-2 right-2 flex items-center pointer-events-none;
+  @apply absolute bottom-1 right-2 flex items-center pointer-events-none;
 }
 
 .divider {
@@ -36,9 +36,11 @@
   @apply px-2 py-1 text-white bg-indigo-600 hover:bg-indigo-500 transition-all valid:hover:scale-105 rounded-md;
   @apply flex flex-row gap-2 items-center;
 
-  @apply disabled:bg-gray-400 disabled:cursor-not-allowed disabled:text-gray-700;
+  @apply disabled:bg-gray-300 disabled:cursor-not-allowed disabled:text-gray-400;
+
+  @apply focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2;
 }
 
-.button .lucide {
-  @apply w-4 h-4 text-current inline-block;
+.button lucide-icon {
+  @apply text-current inline-block;
 }
