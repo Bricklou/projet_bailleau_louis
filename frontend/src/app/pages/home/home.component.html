@@ -1,1 +1,5 @@
-<app-my-form />
+@if (!result) {
+  <app-my-form (formSubmitted)="setResult($event)" />
+} @else {
+  <app-my-recap [result]="result" />
+}

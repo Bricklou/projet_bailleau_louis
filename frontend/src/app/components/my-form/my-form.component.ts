@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import {
   FormControl,
   FormGroup,
+  NonNullableFormBuilder,
   ReactiveFormsModule,
-  ValidatorFn,
   Validators,
 } from '@angular/forms';
 import {
@@ -12,6 +12,7 @@ import {
   LucideSendHorizonal,
 } from 'lucide-angular';
 import { MustMatch } from '../../utils/validators/mustMatch';
+import { FormResult } from '../../types/form.dto';
 
 @Component({
   selector: 'app-my-form',
@@ -24,48 +25,59 @@ export class MyFormComponent {
   protected readonly LucideChevronDown = LucideChevronDown;
   protected readonly LucideSendHorizontal = LucideSendHorizonal;
 
-  protected myForm = new FormGroup(
+  @Output()
+  public readonly formSubmitted = new EventEmitter<FormResult>();
+
+  public constructor(private formBuilder: NonNullableFormBuilder) {}
+
+  protected myForm = this.formBuilder.group(
     {
-      nom: new FormControl('', [Validators.required, Validators.minLength(1)]),
-      prenom: new FormControl('', [
+      nom: this.formBuilder.control('', [
+        Validators.required,
+        Validators.minLength(1),
+      ]),
+      prenom: this.formBuilder.control('', [
         Validators.required,
         Validators.minLength(1),
       ]),
 
-      adresse: new FormControl('', [
+      adresse: this.formBuilder.control('', [
         Validators.required,
         Validators.minLength(1),
       ]),
-      codePostal: new FormControl<number | null>(null, [
+      codePostal: this.formBuilder.control<number | null>(null, [
         Validators.required,
         Validators.min(10000),
         Validators.max(99999),
       ]),
-      ville: new FormControl('', [
+      ville: this.formBuilder.control('', [
         Validators.required,
         Validators.minLength(1),
       ]),
 
-      telephone: new FormControl('', [
+      telephone: this.formBuilder.control('', [
         Validators.required,
         Validators.minLength(1),
       ]),
 
-      email: new FormControl('', [Validators.required, Validators.email]),
+      email: this.formBuilder.control('', [
+        Validators.required,
+        Validators.email,
+      ]),
 
-      civilite: new FormControl<'male' | 'female'>('male', [
+      civilite: this.formBuilder.control<'male' | 'female'>('male', [
         Validators.required,
       ]),
 
-      login: new FormControl('', [
+      login: this.formBuilder.control('', [
         Validators.required,
         Validators.minLength(1),
       ]),
-      password: new FormControl('', [
+      password: this.formBuilder.control('', [
         Validators.required,
         Validators.minLength(1),
       ]),
-      passwordConfirmation: new FormControl('', [
+      passwordConfirmation: this.formBuilder.control('', [
         Validators.required,
         Validators.minLength(1),
       ]),
@@ -84,6 +96,10 @@ export class MyFormComponent {
   }
 
   protected onSubmit() {
-    console.log(this.myForm.valid, this.myForm.value);
+    if (!this.myForm.valid) {
+      return;
+    }
+
+    this.formSubmitted.emit(this.myForm.value as FormResult);
   }
 }
