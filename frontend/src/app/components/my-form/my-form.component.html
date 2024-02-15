@@ -19,8 +19,11 @@
           required
           formControlName="nom"
           placeholder="Nom"
+          [class.error]="hasErrors('nom')"
         />
+        <app-error-message [control]="formControls.nom" />
       </div>
+
       <!-- Prénom -->
       <div class="input">
         <label class="label" for="prenom">Prénom</label>
@@ -31,7 +34,9 @@
           required
           formControlName="prenom"
           placeholder="Prénom"
+          [class.error]="hasErrors('prenom')"
         />
+        <app-error-message [control]="formControls.prenom" />
       </div>
 
       <!-- Adresse -->
@@ -44,7 +49,9 @@
           required
           formControlName="adresse"
           placeholder="Adresse"
+          [class.error]="hasErrors('adresse')"
         />
+        <app-error-message [control]="formControls.adresse" />
       </div>
 
       <!-- Code postal -->
@@ -56,8 +63,10 @@
           id="codePostal"
           required
           formControlName="codePostal"
+          [class.error]="hasErrors('codePostal')"
           placeholder="Code Postal"
         />
+        <app-error-message [control]="formControls.codePostal" />
       </div>
 
       <!-- Ville -->
@@ -70,7 +79,9 @@
           required
           formControlName="ville"
           placeholder="Ville"
+          [class.error]="hasErrors('ville')"
         />
+        <app-error-message [control]="formControls.ville" />
       </div>
 
       <!-- Téléphone -->
@@ -82,8 +93,10 @@
           id="telephone"
           required
           formControlName="telephone"
+          [class.error]="hasErrors('telephone')"
           placeholder="Téléphone"
         />
+        <app-error-message [control]="formControls.telephone" />
       </div>
 
       <!-- Email -->
@@ -96,7 +109,9 @@
           required
           formControlName="email"
           placeholder="Email"
+          [class.error]="hasErrors('email')"
         />
+        <app-error-message [control]="formControls.email" />
       </div>
 
       <!-- Civilité -->
@@ -108,12 +123,15 @@
           required
           (change)="changeCivilite($event)"
           formControlName="civilite"
+          [class.error]="hasErrors('civilite')"
         >
           <option ngValue="male">Monsieur</option>
           <option ngValue="female">Madame</option>
         </select>
 
         <lucide-icon [img]="LucideChevronDown" class="select-arrow w-6 h-6" />
+
+        <app-error-message [control]="formControls.civilite" />
       </div>
 
       <hr class="divider lg:col-span-2" />
@@ -128,7 +146,9 @@
           required
           formControlName="login"
           placeholder="Login"
+          [class.error]="hasErrors('login')"
         />
+        <app-error-message [control]="formControls.login" />
       </div>
 
       <!-- Mot de passe -->
@@ -140,8 +160,10 @@
           id="motDePasse"
           required
           formControlName="password"
+          [class.error]="hasErrors('password')"
           placeholder="Mot de passe"
         />
+        <app-error-message [control]="formControls.password" />
       </div>
 
       <!-- Confirmation -->
@@ -153,8 +175,10 @@
           id="confirmation"
           required
           formControlName="passwordConfirmation"
+          [class.error]="hasErrors('passwordConfirmation')"
           placeholder="Confirmation"
         />
+        <app-error-message [control]="formControls.passwordConfirmation" />
       </div>
 
       <div class="lg:col-span-2 flex justify-end">

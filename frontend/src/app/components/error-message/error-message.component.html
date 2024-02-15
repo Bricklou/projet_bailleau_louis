@@ -1,0 +1,26 @@
+@if (control.errors && control.dirty) {
+  <span class="text-sm text-red-500">
+    @if (control.hasError("required")) {
+      This field is required
+    } @else if (control.hasError("minLength")) {
+      This field must be at least
+      {{ control.getError("minLength").requiredLength }} characters
+    } @else if (control.hasError("maxLength")) {
+      This field must be at most
+      {{ control.getError("maxLength").requiredLength }} characters
+    } @else if (control.hasError("pattern")) {
+      This field must match the following pattern:
+      {{ control.getError("pattern").requiredPattern }}
+    } @else if (control.getError("min")) {
+      This field must be at least {{ control.getError("min").min }}.
+    } @else if (control.getError("max")) {
+      This field must be at most {{ control.getError("max").max }}.
+    } @else if (control.getError("email")) {
+      This field must be a valid email address.
+    } @else if (control.getError("mustMatch")) {
+      Passwords must match
+    } @else {
+      An error occurred
+    }
+  </span>
+}

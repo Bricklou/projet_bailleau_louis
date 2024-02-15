@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import {
+  FormBuilder,
   FormControl,
   FormGroup,
   NonNullableFormBuilder,
@@ -13,13 +14,14 @@ import {
 } from 'lucide-angular';
 import { MustMatch } from '../../utils/validators/mustMatch';
 import { FormResult } from '../../types/form.dto';
+import { ErrorMessageComponent } from '../error-message/error-message.component';
 
 @Component({
   selector: 'app-my-form',
   standalone: true,
   templateUrl: './my-form.component.html',
   styleUrl: './my-form.component.css',
-  imports: [ReactiveFormsModule, LucideAngularModule],
+  imports: [ReactiveFormsModule, LucideAngularModule, ErrorMessageComponent],
 })
 export class MyFormComponent {
   protected readonly LucideChevronDown = LucideChevronDown;
@@ -84,7 +86,7 @@ export class MyFormComponent {
     },
     {
       validators: MustMatch('password', 'passwordConfirmation'),
-    }
+    },
   );
 
   protected changeCivilite(event: Event) {
@@ -93,6 +95,16 @@ export class MyFormComponent {
     if (value) {
       this.myForm.get('civilite')?.setValue(value as 'male' | 'female');
     }
+  }
+
+  protected get formControls(): typeof this.myForm.controls {
+    return this.myForm.controls;
+  }
+
+  protected hasErrors(field: string): boolean {
+    return Boolean(
+      this.myForm.get(field)?.dirty && this.myForm.get(field)?.errors,
+    );
   }
 
   protected onSubmit() {
