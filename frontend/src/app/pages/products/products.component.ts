@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { ProductsService } from '../../services/products.service';
 import { Product } from '../../types/products';
-import { BehaviorSubject, Observable, combineLatest, filter, map } from 'rxjs';
+import { BehaviorSubject, Observable, combineLatest, map } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 
 @Component({
