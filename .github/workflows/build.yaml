@@ -7,7 +7,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: tp_bailleau_louis
+  IMAGE_NAME: Bricklou/tp_bailleau_louis
 
 jobs:
   build-and-publish:
