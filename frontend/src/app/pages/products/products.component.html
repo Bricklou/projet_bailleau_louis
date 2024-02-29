@@ -1,0 +1,26 @@
+<section class="mx-4 lg:max-w-screen-lg lg:mx-auto">
+  <form class="py-4">
+    <div class="input">
+      <label class="label" for="search">Rechercher un produit</label>
+      <input
+        type="text"
+        name="search"
+        id="search"
+        [ngModel]="searchFilter | async"
+        (ngModelChange)="searchFilter.next($event)"
+        required
+        placeholder="Rechercher un produit"
+      />
+    </div>
+  </form>
+  <ul class="flex flex-col gap-4">
+    @for (product of products | async; track product.ref) {
+      <li
+        class="border border-gray-400 shadow-lg rounded-lg p-4 px-8 flex flex-row justify-between"
+      >
+        <span class="font-bold text-lg">{{ product.libelle }}</span>
+        <span>{{ product.prix }}€</span>
+      </li>
+    }
+  </ul>
+</section>

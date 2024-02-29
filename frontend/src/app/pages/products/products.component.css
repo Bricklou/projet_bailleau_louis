@@ -1,0 +1,15 @@
+.input {
+  @apply relative;
+}
+
+.input .label {
+  @apply uppercase text-sm font-semibold mb-2;
+}
+
+.input input {
+  @apply block w-full border border-gray-300 px-4 py-1;
+  @apply focus:appearance-none focus:outline-none rounded-md shadow-sm;
+  @apply focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500;
+  @apply focus:border-indigo-500;
+  @apply transition-all duration-100;
+}
