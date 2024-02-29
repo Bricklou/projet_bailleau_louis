@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { MyFormComponent } from '../../components/my-form/my-form.component';
 import { MyRecapComponent } from '../../components/my-recap/my-recap.component';
-import { createSignal } from '@angular/core/primitives/signals';
 import { FormResult } from '../../types/form.dto';
 
 @Component({

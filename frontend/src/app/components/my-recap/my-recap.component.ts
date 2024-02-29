@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { FormResult } from '../../types/form.dto';
 
 @Component({
@@ -9,6 +9,5 @@ import { FormResult } from '../../types/form.dto';
   styleUrl: './my-recap.component.css',
 })
 export class MyRecapComponent {
-  @Input()
-  public declare result: FormResult;
+  public result = input.required<FormResult>();
 }
