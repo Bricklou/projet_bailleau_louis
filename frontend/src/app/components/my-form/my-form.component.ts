@@ -11,7 +11,7 @@ import {
 } from 'lucide-angular';
 import { MustMatch } from '../../utils/validators/mustMatch';
 import { FormResult } from '../../types/form.dto';
-import { ErrorMessageComponent } from '../error-message/error-message.component';
+import { ErrorMessageComponent } from '../../modules/shared/components/error-message/error-message.component';
 
 @Component({
   selector: 'app-my-form',
@@ -27,7 +27,7 @@ export class MyFormComponent {
   @Output()
   public readonly formSubmitted = new EventEmitter<FormResult>();
 
-  public constructor(private formBuilder: NonNullableFormBuilder) {}
+  public constructor(private formBuilder: NonNullableFormBuilder) { }
 
   protected myForm = this.formBuilder.group(
     {

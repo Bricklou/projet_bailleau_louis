@@ -13,4 +13,10 @@ export const routes: Routes = [
         (m) => m.ProductsComponent,
       ),
   },
+  {
+    path: 'cards',
+    loadComponent: () => import('./pages/cards/cards.component').then(
+      (m) => m.CardsComponent,
+    ),
+  }
 ];
