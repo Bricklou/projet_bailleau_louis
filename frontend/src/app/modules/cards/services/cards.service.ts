@@ -34,12 +34,10 @@ export class CardsService {
   }
 
   public add(card: Card): void {
-    console.log('Adding card', card);
     this._cards.next([...this._cards.getValue(), card]);
   }
 
   public delete(cardNumber: string): void {
-    console.log('Removing card', cardNumber);
     this._cards.next(
       this._cards.getValue().filter((c) => c.code !== cardNumber),
     );

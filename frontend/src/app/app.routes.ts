@@ -15,8 +15,14 @@ export const routes: Routes = [
   },
   {
     path: 'cards',
-    loadComponent: () => import('./pages/cards/cards.component').then(
-      (m) => m.CardsComponent,
-    ),
-  }
+    loadComponent: () =>
+      import('./pages/cards/cards.component').then((m) => m.CardsComponent),
+  },
+  {
+    path: 'my-cart',
+    loadComponent: () =>
+      import('./modules/redux/components/my-cart/my-cart.component').then(
+        (m) => m.MyCartComponent,
+      ),
+  },
 ];

@@ -1,0 +1,28 @@
+<div class="grid grid-flow-col gap-4 grid-cols-4">
+  @for (product of products$ | async; track product.item.ref) {
+    <div class="card shadow-lg border border-gray-300">
+      <div class="card-body">
+        <h2 class="card-title">{{ product.item.libelle }}</h2>
+        <p class="font-semibold text-lg">
+          {{ product.item.prix * product.count }}€
+        </p>
+
+        <p class="text-secondary">
+          ({{ product.count }} pour {{ product.item.prix }}€ l'unité)
+        </p>
+
+        <div class="card-actions justify-end">
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="removeProduct(product.item.ref)"
+          >
+            Retirer
+          </button>
+        </div>
+      </div>
+    </div>
+  } @empty {
+    <p class="text-center col-span-4">Votre panier est vide</p>
+  }
+</div>

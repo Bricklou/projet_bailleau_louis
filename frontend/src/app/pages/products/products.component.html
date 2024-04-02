@@ -1,25 +1,36 @@
 <section class="mx-4 lg:max-w-screen-lg lg:mx-auto">
   <form class="py-4">
-    <div class="input">
-      <label class="label" for="search">Rechercher un produit</label>
+    <label class="form-control">
+      <div class="label">
+        <span class="label-text">Rechercher un produit</span>
+      </div>
       <input
         type="text"
         name="search"
         id="search"
+        class="input input-bordered"
         [ngModel]="searchFilter | async"
         (ngModelChange)="searchFilter.next($event)"
         required
         placeholder="Rechercher un produit"
       />
-    </div>
+    </label>
   </form>
   <ul class="flex flex-col gap-4">
     @for (product of products | async; track product.ref) {
-      <li
-        class="border border-gray-400 shadow-lg rounded-lg p-4 px-8 flex flex-row justify-between"
-      >
-        <span class="font-bold text-lg">{{ product.libelle }}</span>
-        <span>{{ product.prix }}€</span>
+      <li class="card shadow-lg border border-gray-300 rounded-lg">
+        <div class="card-body flex flex-row items-center">
+          <span class="font-bold text-lg flex-1">{{ product.libelle }}</span>
+          <span>{{ product.prix }}€</span>
+          <button
+            type="button"
+            class="btn btn-primary btn-sm"
+            aria-label="Add to card"
+            (click)="addToCart(product)"
+          >
+            <lucide-icon [img]="icons.LucidePlus" class="size-4" />
+          </button>
+        </div>
       </li>
     }
   </ul>
