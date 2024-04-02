@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -8,6 +8,5 @@ import { FormControl, FormGroup } from '@angular/forms';
   templateUrl: './error-message.component.html',
 })
 export class ErrorMessageComponent {
-  @Input()
-  public control!: FormControl | FormGroup;
+  public control = input.required<FormControl | FormGroup>();
 }

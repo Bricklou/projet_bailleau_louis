@@ -1,15 +1,17 @@
-<header class="px-8 py-6 bg-blue-200">
-  <nav>
-    <ul class="flex flex-wrap gap-4">
-      <li>
-        <a routerLink="/" class="font-bold px-3 py-2 rounded-md hover:bg-gray-500/25">TP Angular</a>
-      </li>
-      <li>
-        <a class="px-3 py-2 rounded-md hover:bg-gray-500/25" routerLink="products">Products</a>
-      </li>
-      <li>
-        <a class="px-3 py-2 rounded-md hover:bg-gray-500/25" routerLink="cards">Cards</a>
-      </li>
-    </ul>
-  </nav>
+<header class="navbar bg-base-100">
+  <div class="navbar-start">
+    <a routerLink="/" class="btn btn-ghost">TP Angular</a>
+    <a class="btn btn-ghost" routerLink="products">Products</a>
+    <a class="btn btn-ghost" routerLink="cards">Cards</a>
+  </div>
+
+  <div class="navbar-end">
+    <a
+      routerLink="/my-card"
+      class="btn btn-ghost"
+      aria-label="My Shopping Card"
+    >
+      <app-shopping-cart-icon />
+    </a>
+  </div>
 </header>

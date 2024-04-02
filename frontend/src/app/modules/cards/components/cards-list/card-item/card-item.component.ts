@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output, input } from '@angular/core';
+import { Component, output, OnInit, input } from '@angular/core';
 import { Card } from '../../../types/card';
 
 @Component({
@@ -8,8 +8,8 @@ import { Card } from '../../../types/card';
 })
 export class CardItemComponent implements OnInit {
   public readonly cardData = input.required<Card>();
-  @Output()
-  public readonly delete = new EventEmitter<string>();
+
+  public readonly delete = output<string>();
 
   protected declare hueOffset: number;
 

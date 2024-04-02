@@ -10,181 +10,221 @@
       (ngSubmit)="onSubmit()"
     >
       <!-- Nom -->
-      <div class="input">
-        <label class="label" for="nom">Nom</label>
+      <label class="form-control">
+        <div class="label">
+          <span class="label-text">Nom</span>
+        </div>
         <input
           type="text"
           name="nom"
           id="nom"
+          class="input input-bordered"
           required
           formControlName="nom"
           placeholder="Nom"
-          [class.error]="hasErrors('nom')"
+          [class.input-error]="hasErrors('nom')"
         />
         <app-error-message [control]="formControls.nom" />
-      </div>
+      </label>
 
       <!-- Prénom -->
-      <div class="input">
-        <label class="label" for="prenom">Prénom</label>
+      <label class="form-control">
+        <div class="label">
+          <span class="label-text">Prénom</span>
+        </div>
+
         <input
           type="text"
           name="prenom"
+          class="input input-bordered"
           id="prenom"
           required
           formControlName="prenom"
           placeholder="Prénom"
-          [class.error]="hasErrors('prenom')"
+          [class.input-error]="hasErrors('prenom')"
         />
         <app-error-message [control]="formControls.prenom" />
-      </div>
+      </label>
 
       <!-- Adresse -->
-      <div class="input lg:col-span-2">
-        <label class="label" for="adresse">Adresse</label>
+      <label class="form-control lg:col-span-2">
+        <div class="label">
+          <span class="label-text">Adresse</span>
+        </div>
         <input
           type="text"
           name="adresse"
           id="adresse"
+          class="input input-bordered"
           required
           formControlName="adresse"
           placeholder="Adresse"
-          [class.error]="hasErrors('adresse')"
+          [class.input-error]="hasErrors('adresse')"
         />
         <app-error-message [control]="formControls.adresse" />
-      </div>
+      </label>
 
       <!-- Code postal -->
-      <div class="input">
-        <label class="label" for="codePostal">Code postal</label>
+      <div class="form-control">
+        <div class="label">
+          <span class="label-text">Code postal</span>
+        </div>
+
         <input
           type="number"
           name="codePostal"
           id="codePostal"
+          class="input input-bordered"
           required
           formControlName="codePostal"
-          [class.error]="hasErrors('codePostal')"
+          [class.input-error]="hasErrors('codePostal')"
           placeholder="Code Postal"
         />
         <app-error-message [control]="formControls.codePostal" />
       </div>
 
       <!-- Ville -->
-      <div class="input">
-        <label class="label" for="ville">Ville</label>
+      <label class="form-control">
+        <div class="label">
+          <span class="label-text">Ville</span>
+        </div>
+
         <input
           type="text"
           name="ville"
           id="ville"
+          class="input input-bordered"
           required
           formControlName="ville"
           placeholder="Ville"
-          [class.error]="hasErrors('ville')"
+          [class.input-error]="hasErrors('ville')"
         />
         <app-error-message [control]="formControls.ville" />
-      </div>
+      </label>
 
       <!-- Téléphone -->
-      <div class="input">
-        <label class="label" for="telephone">Téléphone</label>
+      <label class="form-control">
+        <div class="label">
+          <span class="label-text">Téléphone</span>
+        </div>
         <input
           type="text"
           name="telephone"
           id="telephone"
+          class="input input-bordered"
           required
           formControlName="telephone"
-          [class.error]="hasErrors('telephone')"
+          [class.input-error]="hasErrors('telephone')"
           placeholder="Téléphone"
         />
         <app-error-message [control]="formControls.telephone" />
-      </div>
+      </label>
 
       <!-- Email -->
-      <div class="input">
-        <label class="label" for="email">Email</label>
+      <label class="form-control">
+        <div class="label">
+          <span class="label-text">Email</span>
+        </div>
         <input
           type="text"
           name="email"
           id="email"
           required
+          class="input input-bordered"
           formControlName="email"
           placeholder="Email"
-          [class.error]="hasErrors('email')"
+          [class.input-error]="hasErrors('email')"
         />
         <app-error-message [control]="formControls.email" />
-      </div>
+      </label>
 
       <!-- Civilité -->
-      <div class="input">
-        <label class="label" for="civilite">Civilité</label>
+      <label class="form-control">
+        <div class="label">
+          <span class="label-text">Civilité</span>
+        </div>
+
         <select
           name="civilite"
           id="civilite"
           required
+          class="select select-bordered"
           (change)="changeCivilite($event)"
           formControlName="civilite"
-          [class.error]="hasErrors('civilite')"
+          [class.input-error]="hasErrors('civilite')"
         >
           <option ngValue="male">Monsieur</option>
           <option ngValue="female">Madame</option>
         </select>
 
-        <lucide-icon [img]="LucideChevronDown" class="select-arrow w-6 h-6" />
-
         <app-error-message [control]="formControls.civilite" />
-      </div>
+      </label>
 
-      <hr class="divider lg:col-span-2" />
+      <div class="divider lg:col-span-2"></div>
 
       <!-- Login -->
-      <div class="input">
-        <label class="label" for="login">Login</label>
+      <label class="form-control">
+        <div class="label">
+          <span class="label-text">Login</span>
+        </div>
         <input
           type="text"
           name="login"
           id="login"
           required
+          class="input input-bordered"
           formControlName="login"
           placeholder="Login"
-          [class.error]="hasErrors('login')"
+          [class.input-error]="hasErrors('login')"
         />
         <app-error-message [control]="formControls.login" />
-      </div>
+      </label>
 
       <!-- Mot de passe -->
-      <div class="input col-start-1">
-        <label class="label" for="motDePasse">Mot de passe</label>
+      <label class="form-control col-start-1">
+        <div class="label">
+          <span class="label-text">Mot de passe</span>
+        </div>
+
         <input
           type="password"
           name="motDePasse"
           id="motDePasse"
+          class="input input-bordered"
           required
           formControlName="password"
-          [class.error]="hasErrors('password')"
+          [class.input-error]="hasErrors('password')"
           placeholder="Mot de passe"
         />
         <app-error-message [control]="formControls.password" />
-      </div>
+      </label>
 
       <!-- Confirmation -->
-      <div class="input">
-        <label class="label" for="confirmation">Confirmation</label>
+      <label class="form-control">
+        <div class="label">
+          <span class="label-text">Confirmation</span>
+        </div>
         <input
           type="password"
           name="confirmation"
           id="confirmation"
           required
+          class="input input-bordered"
           formControlName="passwordConfirmation"
           [class.error]="hasErrors('passwordConfirmation')"
           placeholder="Confirmation"
         />
         <app-error-message [control]="formControls.passwordConfirmation" />
-      </div>
+      </label>
 
       <div class="lg:col-span-2 flex justify-end">
-        <button type="submit" class="button" [disabled]="!myForm.valid">
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="!myForm.valid"
+        >
           Submit
-          <lucide-icon [img]="LucideSendHorizontal" />
+          <lucide-icon [img]="icons.LucideSendHorizonal" />
         </button>
       </div>
     </form>

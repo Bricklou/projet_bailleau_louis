@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, output } from '@angular/core';
 import {
   NonNullableFormBuilder,
   ReactiveFormsModule,
@@ -21,13 +21,11 @@ import { ErrorMessageComponent } from '../../modules/shared/components/error-mes
   imports: [ReactiveFormsModule, LucideAngularModule, ErrorMessageComponent],
 })
 export class MyFormComponent {
-  protected readonly LucideChevronDown = LucideChevronDown;
-  protected readonly LucideSendHorizontal = LucideSendHorizonal;
+  protected readonly icons = { LucideSendHorizonal };
 
-  @Output()
-  public readonly formSubmitted = new EventEmitter<FormResult>();
+  public readonly formSubmitted = output<FormResult>();
 
-  public constructor(private formBuilder: NonNullableFormBuilder) { }
+  public constructor(private formBuilder: NonNullableFormBuilder) {}
 
   protected myForm = this.formBuilder.group(
     {
