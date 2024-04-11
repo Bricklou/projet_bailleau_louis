@@ -56,3 +56,12 @@ Ces derniers sont situés dans :
 - `backend/types/request.ts`
 
 N'oubliez pas d'installer les modules `jsonwebtoken` et `@types/jsonwebtoken` avec NPM.
+
+## Pour finir : on déploie
+
+Pour le déploiement, vous aurez besoin de configurer 2 variables d'environnement pour que serveur AdonisJS puisse fonctionner : `TZ` (pour la timezone) et `APP_KEY` (un secret qui sert pour le JWT et le hash).
+
+Vous pouvez les configurer dans render comme ceci :
+![alt text](.github/docs/render_env_config.png)
+
+(Vous pouvez laisser render générer la valeur pour l'`APP_KEY`, du moment qu'elle fait 16 caractères de long minimum)
