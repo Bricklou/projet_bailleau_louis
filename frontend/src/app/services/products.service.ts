@@ -7,9 +7,9 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class ProductsService {
-  public constructor(private httpClient: HttpClient) { }
+  public constructor(private httpClient: HttpClient) {}
 
   public getCatalogue(): Observable<Product[]> {
-    return this.httpClient.get<Product[]>('/assets/products.json')
+    return this.httpClient.get<Product[]>('/api/products');
   }
 }
