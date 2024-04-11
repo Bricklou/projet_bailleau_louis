@@ -1,6 +1,6 @@
 # Mise en place du backend à partir du [premier HOWTO](./HOWTO.md)
 
-## Configuration du projet
+## Mise en place du projet
 
 Pour commencer, créez le projet backend. Vous pouvez utiliser la stack que vous souhaitez, pour ma part, je vais utiliser [AdonisJS](https://adonisjs.com) :
 
@@ -22,7 +22,9 @@ Maintenant, dans le backend, installez le paquet suivants :
 node ace add vinejs
 ```
 
-## Configuration de Docker
+## Configuration
+
+### Docker
 
 Dans le fichier `Dockerfile`, vous allez devoir activer l'ajout du backend Adonis. Dans l'ensemble, cela vous n'avez besoin que de décommenter les lignes déjà présente comme suit :
 
@@ -32,12 +34,25 @@ Ajoutez aussi quelques variables d'environnement par défaut :
 
 ![Reconfiguration du DockerFile (bis)](.github/docs/reconfigure-docker2.png)
 
-## Configuration de Nginx
+### Nginx
 
 Dans le fichier `docker/nginx.conf`, changez juste la configuration comme suit :
 
 ![Reconfiguration de Nginx](.github/docs/reconfigure-nginx.png)
 
-## Configuration de supervisord
+### supervisord
 
 Dans le fichier `docker/supervisord.conf`, décommentez toute la partie "backend" déjà présente
+
+## Ajout des fichiers manquant
+
+Pour finaliser l'installation, il ne vous manque que quelques fichiers lié au token JWT et le middleware lié.
+
+Ces derniers sont situés dans :
+
+- `backend/app/middlewares/jwt_middleware.ts`
+- `backend/app/services/jwt_service.ts`
+- `backend/app/kernel.ts`
+- `backend/types/request.ts`
+
+N'oubliez pas d'installer les modules `jsonwebtoken` et `@types/jsonwebtoken` avec NPM.

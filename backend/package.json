@@ -40,6 +40,7 @@
     "@japa/plugin-adonisjs": "^3.0.1",
     "@japa/runner": "^3.1.2",
     "@swc/core": "^1.4.13",
+    "@types/jsonwebtoken": "^9.0.6",
     "@types/node": "^20.12.7",
     "eslint": "^8.57.0",
     "pino-pretty": "^11.0.0",
@@ -49,6 +50,8 @@
   },
   "dependencies": {
     "@adonisjs/core": "^6.5.0",
+    "@vinejs/vine": "^2.0.0",
+    "jsonwebtoken": "^9.0.2",
     "reflect-metadata": "^0.2.2"
   },
   "eslintConfig": {
