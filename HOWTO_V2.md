@@ -66,3 +66,5 @@ Vous pouvez les configurer dans render comme ceci :
 ![alt text](.github/docs/render_env_config.png)
 
 (Vous pouvez laisser render générer la valeur pour l'`APP_KEY`, du moment qu'elle fait 16 caractères de long minimum)
+
+(edit: ajoutez la variable `PORT` avec `3333` comme valeur, cela peut vous éviter quelques surprises où le backend démarre sur le mauvais port)
