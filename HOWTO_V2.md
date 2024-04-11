@@ -52,8 +52,9 @@ Ces derniers sont situés dans :
 
 - `backend/app/middlewares/jwt_middleware.ts`
 - `backend/app/services/jwt_service.ts`
-- `backend/app/kernel.ts`
+- `backend/start/kernel.ts`
 - `backend/types/request.ts`
+- `frontend/src/proxy.conf.json` (modifiez aussi le fichier `angular.json` pour y ajouter `"options": { "proxyConfig": "src/proxy.conf.json" }` dans `build.serve`)
 
 N'oubliez pas d'installer les modules `jsonwebtoken` et `@types/jsonwebtoken` avec NPM.
 
