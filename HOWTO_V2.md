@@ -42,7 +42,11 @@ Dans le fichier `docker/nginx.conf`, changez juste la configuration comme suit :
 
 ### supervisord
 
-Dans le fichier `docker/supervisord.conf`, décommentez toute la partie "backend" déjà présente
+Dans le fichier `docker/supervisord.conf`, décommentez toute la partie "backend" déjà présente et changer le champ `command` comme suit:
+
+```conf
+command=/bin/sh -c "PORT=3333 npm run start"
+```
 
 ## Ajout des fichiers manquant
 
@@ -66,5 +70,3 @@ Vous pouvez les configurer dans render comme ceci :
 ![alt text](.github/docs/render_env_config.png)
 
 (Vous pouvez laisser render générer la valeur pour l'`APP_KEY`, du moment qu'elle fait 16 caractères de long minimum)
-
-(edit: ajoutez la variable `PORT` avec `3333` comme valeur, cela peut vous éviter quelques surprises où le backend démarre sur le mauvais port)
