@@ -8,5 +8,9 @@
 */
 
 import router from '@adonisjs/core/services/router'
+import { middleware } from './kernel.js'
 
-router.get('/', async () => 'It works!')
+const UsersController = () => import('#controllers/users_controller')
+
+router.get('/', async () => 'It works!').middleware(middleware.jwt())
+router.post('/', [UsersController, 'login'])
