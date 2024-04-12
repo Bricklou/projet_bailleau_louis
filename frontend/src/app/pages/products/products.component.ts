@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { LucideAngularModule, LucidePlus } from 'lucide-angular';
 import { Store } from '@ngxs/store';
 import { AddProduct } from '../../modules/redux/states/shopping-cart/cart.action';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-products',
@@ -31,6 +32,7 @@ export class ProductsComponent {
       this.searchFilter,
       this.productsService.getCatalogue(),
     ]).pipe(
+      takeUntilDestroyed(),
       map(([searchFilter, products]) =>
         products.filter((product) =>
           product.libelle.toLowerCase().includes(searchFilter.toLowerCase()),

@@ -27,6 +27,8 @@ export default class UsersController {
   async register({ request, response }: HttpContext) {
     const data = await request.validateUsing(registerUserValidator)
 
+    console.log(data)
+
     return response.noContent()
   }
 

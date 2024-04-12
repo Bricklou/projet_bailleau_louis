@@ -4,11 +4,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import {
-  LucideAngularModule,
-  LucideChevronDown,
-  LucideSendHorizonal,
-} from 'lucide-angular';
+import { LucideAngularModule, LucideSendHorizontal } from 'lucide-angular';
 import { MustMatch } from '../../utils/validators/mustMatch';
 import { FormResult } from '../../types/form.dto';
 import { ErrorMessageComponent } from '../../modules/shared/components/error-message/error-message.component';
@@ -21,7 +17,7 @@ import { ErrorMessageComponent } from '../../modules/shared/components/error-mes
   imports: [ReactiveFormsModule, LucideAngularModule, ErrorMessageComponent],
 })
 export class MyFormComponent {
-  protected readonly icons = { LucideSendHorizonal };
+  protected readonly icons = { LucideSendHorizontal };
 
   public readonly formSubmitted = output<FormResult>();
 
@@ -96,7 +92,7 @@ export class MyFormComponent {
     return this.myForm.controls;
   }
 
-  protected hasErrors(field: string): boolean {
+  protected hasErrors(field: keyof typeof this.myForm.value): boolean {
     return Boolean(
       this.myForm.get(field)?.dirty && this.myForm.get(field)?.errors,
     );

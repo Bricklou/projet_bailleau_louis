@@ -6,12 +6,18 @@
   </div>
 
   <div class="navbar-end">
-    <a
-      routerLink="/my-cart"
-      class="btn btn-ghost"
-      aria-label="My Shopping Card"
-    >
-      <app-shopping-cart-icon />
-    </a>
+    @if (auth.isAuthenticated) {
+      <a
+        routerLink="/my-cart"
+        class="btn btn-ghost"
+        aria-label="My Shopping Card"
+      >
+        <app-shopping-cart-icon />
+      </a>
+    } @else {
+      <a routerLink="/login" class="btn btn-ghost" aria-label="Login">
+        <lucide-icon [img]="icons.LucideLogIn" class="size-6" />
+      </a>
+    }
   </div>
 </header>
