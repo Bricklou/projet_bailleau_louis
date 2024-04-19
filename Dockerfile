@@ -6,14 +6,11 @@ FROM node:20 as builder-frontend
 # Set working directory
 WORKDIR /app
 
-# Install pnpm
-RUN npm install -g pnpm
-
 # Copy project folder
 COPY frontend /app
 
 # Build Angular project
-RUN pnpm i && NODE_ENV=production pnpm run build
+RUN corepack enable && pnpm i && NODE_ENV=production pnpm run build
 
 # ==============================
 #           BACKEND
@@ -23,14 +20,11 @@ FROM node:20 as builder-backend
 # Set working directory
 WORKDIR /app
 
-# Install pnpm
-RUN npm install -g pnpm
-
 # Copy project folder
 COPY backend /app
 
 # Build backend project
-RUN pnpm i && NODE_ENV=production pnpm run build
+RUN corepack enable && pnpm i && NODE_ENV=production pnpm run build
 
 # ==============================
 #         FINAL IMAGE
