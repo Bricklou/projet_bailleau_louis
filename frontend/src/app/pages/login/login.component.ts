@@ -6,7 +6,11 @@ import {
   Validators,
 } from '@angular/forms';
 import { ErrorMessageComponent } from '../../modules/shared/components/error-message/error-message.component';
-import { LucideAngularModule, LucideSendHorizontal } from 'lucide-angular';
+import {
+  LucideAngularModule,
+  LucideInfo,
+  LucideSendHorizontal,
+} from 'lucide-angular';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 
@@ -18,7 +22,7 @@ import { Router } from '@angular/router';
   styleUrl: './login.component.css',
 })
 export class LoginComponent {
-  protected icons = { LucideSendHorizontal };
+  protected icons = { LucideSendHorizontal, LucideInfo };
 
   protected loginForm = this.formBuilder.group({
     login: this.formBuilder.control('', [

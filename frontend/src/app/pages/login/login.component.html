@@ -9,6 +9,15 @@
       [formGroup]="loginForm"
       (ngSubmit)="onSubmit()"
     >
+      <span class="alert alert-info px-2 py-1 w-fit mx-auto">
+        <lucide-angular [img]="icons.LucideInfo" class="size-6" />
+        <span class="select-none">
+          Login / password :
+          <pre class="select-all inline">toto</pre>
+          /
+          <pre class="select-all inline">titi_tata</pre>
+        </span>
+      </span>
       <!-- Login -->
       <label class="form-control">
         <div class="label">
