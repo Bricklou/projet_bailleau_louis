@@ -21,7 +21,7 @@ export default class UsersController {
 
     const jwt = this.jwtService.generateAccessToken(user)
 
-    return response.header('Authorization', jwt).json(user)
+    return response.header('Authorization', `Bearer ${jwt}`).json(user)
   }
 
   async register({ request, response }: HttpContext) {

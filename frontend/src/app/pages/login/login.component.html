@@ -22,9 +22,10 @@
           class="input input-bordered"
           formControlName="login"
           placeholder="Login"
-          [class.input-error]="hasErrors('username')"
+          [class.input-error]="hasErrors('login')"
+          autocomplete="username"
         />
-        <app-error-message [control]="formControls.username" />
+        <app-error-message [control]="formControls.login" />
       </label>
 
       <!-- Mot de passe -->
@@ -42,6 +43,7 @@
           formControlName="password"
           [class.input-error]="hasErrors('password')"
           placeholder="Mot de passe"
+          autocomplete="current-password"
         />
         <app-error-message [control]="formControls.password" />
       </label>

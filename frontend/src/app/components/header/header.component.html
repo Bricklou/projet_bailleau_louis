@@ -14,6 +14,14 @@
       >
         <app-shopping-cart-icon />
       </a>
+      <button
+        type="button"
+        class="btn btn-ghost"
+        aria-label="Log out"
+        (click)="logoutUser()"
+      >
+        <lucide-icon [img]="icons.LucideLogOut" class="size-6" />
+      </button>
     } @else {
       <a routerLink="/login" class="btn btn-ghost" aria-label="Login">
         <lucide-icon [img]="icons.LucideLogIn" class="size-6" />

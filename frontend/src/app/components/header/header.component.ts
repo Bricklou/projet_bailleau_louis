@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ShoppingCartIconComponent } from '../../modules/redux/components/shopping-cart-icon/shopping-cart-icon.component';
-import { LucideAngularModule, LucideLogIn } from 'lucide-angular';
+import { LucideAngularModule, LucideLogIn, LucideLogOut } from 'lucide-angular';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -12,7 +12,15 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './header.component.css',
 })
 export class HeaderComponent {
-  protected icons = { LucideLogIn };
+  protected icons = { LucideLogIn, LucideLogOut };
 
-  public constructor(protected auth: AuthService) {}
+  public constructor(
+    protected auth: AuthService,
+    private router: Router,
+  ) {}
+
+  protected logoutUser() {
+    this.auth.logout();
+    this.router.navigateByUrl('/');
+  }
 }

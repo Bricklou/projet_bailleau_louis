@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { guestGuard } from './guards/guest.guard';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -10,6 +12,7 @@ export const routes: Routes = [
     path: 'login',
     loadComponent: () =>
       import('./pages/login/login.component').then((m) => m.LoginComponent),
+    canActivate: [guestGuard],
   },
   {
     path: 'products',
@@ -17,6 +20,7 @@ export const routes: Routes = [
       import('./pages/products/products.component').then(
         (m) => m.ProductsComponent,
       ),
+    canActivate: [authGuard],
   },
   {
     path: 'cards',
@@ -29,5 +33,6 @@ export const routes: Routes = [
       import('./modules/redux/components/my-cart/my-cart.component').then(
         (m) => m.MyCartComponent,
       ),
+    canActivate: [authGuard],
   },
 ];

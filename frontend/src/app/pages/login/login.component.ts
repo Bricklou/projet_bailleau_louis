@@ -8,6 +8,7 @@ import {
 import { ErrorMessageComponent } from '../../modules/shared/components/error-message/error-message.component';
 import { LucideAngularModule, LucideSendHorizontal } from 'lucide-angular';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,7 @@ export class LoginComponent {
   protected icons = { LucideSendHorizontal };
 
   protected loginForm = this.formBuilder.group({
-    username: this.formBuilder.control('', [
+    login: this.formBuilder.control('', [
       Validators.required,
       Validators.minLength(1),
     ]),
@@ -33,6 +34,7 @@ export class LoginComponent {
   public constructor(
     private formBuilder: NonNullableFormBuilder,
     private auth: AuthService,
+    private router: Router,
   ) {}
 
   protected get formControls(): typeof this.loginForm.controls {
@@ -52,9 +54,8 @@ export class LoginComponent {
 
     const data = this.loginForm.getRawValue();
 
-    this.auth
-      .login(data.username, data.password)
-      .pipe(takeUntilDestroyed())
-      .subscribe();
+    this.auth.login(data.login, data.password).subscribe(() => {
+      this.router.navigateByUrl('/');
+    });
   }
 }
