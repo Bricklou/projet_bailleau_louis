@@ -2,7 +2,13 @@ import { Component } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { ProductsService } from '../../services/products.service';
 import { Product } from '../../types/products';
-import { BehaviorSubject, Observable, combineLatest, map } from 'rxjs';
+import {
+  BehaviorSubject,
+  Observable,
+  debounceTime,
+  distinctUntilChanged,
+  switchMap,
+} from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { LucideAngularModule, LucidePlus } from 'lucide-angular';
 import { Store } from '@ngxs/store';
@@ -28,15 +34,12 @@ export class ProductsComponent {
     private store: Store,
   ) {
     //Create a subscription to the products service and searchFilter changes
-    this.products = combineLatest([
-      this.searchFilter,
-      this.productsService.getCatalogue(),
-    ]).pipe(
+    this.products = this.searchFilter.pipe(
       takeUntilDestroyed(),
-      map(([searchFilter, products]) =>
-        products.filter((product) =>
-          product.libelle.toLowerCase().includes(searchFilter.toLowerCase()),
-        ),
+      debounceTime(200),
+      distinctUntilChanged(),
+      switchMap((searchTerm) =>
+        this.productsService.searchCatalogue(searchTerm),
       ),
     );
   }

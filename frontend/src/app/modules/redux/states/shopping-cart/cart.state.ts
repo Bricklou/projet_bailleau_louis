@@ -25,13 +25,13 @@ export class CardState {
     const state = ctx.getState();
 
     const idx = state.products.findIndex(
-      (p) => p.item.ref === action.product.ref,
+      (p) => p.item.id === action.product.id,
     );
 
     if (idx >= 0) {
       ctx.patchState({
         products: state.products.map((p) => {
-          if (p.item.ref === action.product.ref) {
+          if (p.item.id === action.product.id) {
             return { item: p.item, count: p.count + action.count };
           }
           return p;
@@ -55,16 +55,14 @@ export class CardState {
   ) {
     const state = ctx.getState();
 
-    const idx = state.products.findIndex(
-      (p) => p.item.ref === action.productRef,
-    );
+    const idx = state.products.findIndex((p) => p.item.id === action.productId);
 
     if (idx < 0) {
       return;
     }
 
     ctx.patchState({
-      products: state.products.filter((p) => p.item.ref !== action.productRef),
+      products: state.products.filter((p) => p.item.id !== action.productId),
     });
   }
 

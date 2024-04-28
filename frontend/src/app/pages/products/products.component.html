@@ -17,11 +17,11 @@
     </label>
   </form>
   <ul class="flex flex-col gap-4">
-    @for (product of products | async; track product.ref) {
+    @for (product of products | async; track product.id) {
       <li class="card shadow-lg border border-gray-300 rounded-lg">
         <div class="card-body flex flex-row items-center">
-          <span class="font-bold text-lg flex-1">{{ product.libelle }}</span>
-          <span>{{ product.prix }}€</span>
+          <span class="font-bold text-lg flex-1">{{ product.name }}</span>
+          <span>{{ product.price }}€</span>
           <button
             type="button"
             class="btn btn-primary btn-sm"

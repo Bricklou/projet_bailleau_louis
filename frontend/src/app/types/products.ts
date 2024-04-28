@@ -1,5 +1,5 @@
 export interface Product {
-  ref: string;
-  libelle: string;
-  prix: number;
+  id: number;
+  name: string;
+  price: number;
 }

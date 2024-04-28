@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../types/products';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +9,11 @@ import { HttpClient } from '@angular/common/http';
 export class ProductsService {
   public constructor(private httpClient: HttpClient) {}
 
-  public getCatalogue(): Observable<Product[]> {
-    return this.httpClient.get<Product[]>('/api/products');
+  public searchCatalogue(query?: string): Observable<Product[]> {
+    let params = new HttpParams();
+    if (query && query.length) {
+      params = params.append('search', query);
+    }
+    return this.httpClient.get<Product[]>(`/api/products`, { params });
   }
 }

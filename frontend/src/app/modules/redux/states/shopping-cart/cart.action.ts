@@ -10,5 +10,5 @@ export class AddProduct {
 
 export class RemoveProduct {
   static readonly type = '[ShoppingCart] Remove Product';
-  constructor(public productRef: string) {}
+  constructor(public productId: number) {}
 }

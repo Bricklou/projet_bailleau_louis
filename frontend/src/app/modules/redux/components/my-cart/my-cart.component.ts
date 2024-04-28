@@ -22,7 +22,7 @@ export class MyCartComponent {
 
   public constructor(private store: Store) {}
 
-  protected removeProduct(productRef: string) {
-    this.store.dispatch(new RemoveProduct(productRef));
+  protected removeProduct(productId: number) {
+    this.store.dispatch(new RemoveProduct(productId));
   }
 }
