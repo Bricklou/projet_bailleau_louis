@@ -1,0 +1,87 @@
+<header class="bg-white relative">
+  <nav aria-label="Top" class="lg:px-8 sm:px-6 px-4 max-w-7xl mx-auto">
+    <div class="border-b border-gray-200">
+      <div class="justify-between items-center h-16 flex">
+        <div class="lg:hidden items-center flex-1 flex">
+          <button type="button" class="text-gray-400 p-1 bg-white rounded-md">
+            <span class="sr-only">Open menu</span>
+            <lucide-angular [img]="icons.Menu" class="size-6" />
+          </button>
+          <a routerLink="/" class="text-gray-400 p-1 ml-1">
+            <div class="sr-only">Search</div>
+            <lucide-angular [img]="icons.Search" class="size-6" />
+          </a>
+        </div>
+        <div class="lg:self-stretch lg:flex-1 lg:block hidden">
+          <div class="h-full flex">
+            <div class="flex space-x-8">
+              <div class="relative flex">
+                <button
+                  class="ease-out duration-200 transition-colors color text-gray-700 font-medium text-sm content-center items-center flex z-10 relative"
+                >
+                  Women
+                  <span
+                    class="md:transform md:mt-5 ease-out duration-200 transition-colors h-0.5 bottom-0 inset-x-0 absolute"
+                    aria-hidden="true"
+                  ></span>
+                </button>
+              </div>
+              <div class="relative flex">
+                <button
+                  class="ease-out duration-200 transition-colors color text-gray-700 font-medium text-sm content-center items-center flex z-10 relative"
+                >
+                  Men
+                  <span
+                    class="md:transform md:mt-5 ease-out duration-200 transition-colors h-0.5 bottom-0 inset-x-0 absolute"
+                    aria-hidden="true"
+                  ></span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a routerLink="/" class="inline-flex gap-2 items-center">
+          <lucide-angular
+            [img]="icons.ShoppingCart"
+            class="size-6 text-primary"
+            aria-hidden="true"
+          />
+          <span class="text-primary-600 font-medium hidden lg:block">
+            The <span class="text-primary-400 font-bold">ClothingStore</span>
+          </span>
+        </a>
+        <div class="justify-end items-center flex-1 flex">
+          <a routerLink="/" class="lg:block text-gray-700 p-2 hidden">
+            <div class="sr-only">Search</div>
+            <lucide-angular
+              [img]="icons.Search"
+              class="size-6"
+              aria-hidden="true"
+            />
+          </a>
+
+          <a routerLink="/" class="lg:block text-gray-700 p-2 hidden ml-3">
+            <div class="sr-only">Account</div>
+            <lucide-angular
+              [img]="icons.User"
+              class="size-6"
+              aria-hidden="true"
+            />
+          </a>
+
+          <div class="lg:ml-6 flow-root ml-4">
+            <a routerLink="/" class="p-2 items-center text-gray-700 flex -m-2">
+              <lucide-angular
+                [img]="icons.ShoppingBasket"
+                class="size-6"
+                aria-hidden="true"
+              />
+              <span class="text-gray-700 font-medium text-sm ml-2">0</span>
+              <div class="sr-only">items in cart, view bag</div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
