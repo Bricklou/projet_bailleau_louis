@@ -1,0 +1,15 @@
+<div class="relative inline-flex items-center">
+  <select
+    [id]="selectId()"
+    [name]="selectName()"
+    class="sm:text-sm shadow-sm text-gray-700 leading-5 font-medium text-base text-left py-1.5 pr-10 pl-3 border-gray-300 border rounded-md max-w-full appearance-none focus:outline-primary bg-none bg-white"
+  >
+    <ng-content />
+  </select>
+
+  <lucide-angular
+    aria-hidden="true"
+    [img]="icons.ChevronDown"
+    class="size-4 absolute right-1 text-gray-700 pointer-events-none"
+  />
+</div>

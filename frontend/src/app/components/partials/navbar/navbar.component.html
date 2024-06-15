@@ -53,10 +53,13 @@
         <div class="justify-end items-center flex-1 flex">
           <app-nav-icon href="/" label="Search" [icon]="icons.Search" />
 
-          <app-nav-icon href="/" label="Account" [icon]="icons.User" />
+          <app-nav-icon href="/account" label="Account" [icon]="icons.User" />
 
           <div class="lg:ml-6 flow-root ml-4">
-            <a routerLink="/" class="p-2 items-center text-gray-700 flex -m-2">
+            <a
+              routerLink="/cart"
+              class="p-2 items-center text-gray-700 flex -m-2"
+            >
               <lucide-angular
                 [img]="icons.ShoppingBasket"
                 class="size-6"
