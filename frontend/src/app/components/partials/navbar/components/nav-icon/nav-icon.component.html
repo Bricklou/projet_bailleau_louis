@@ -1,0 +1,9 @@
+<a
+  [routerLink]="href()"
+  class="lg:block text-gray-700 p-2 hidden ml-3"
+  [ngClass]="_class"
+>
+  <div class="sr-only">{{ label() }}</div>
+  <lucide-angular [img]="icon()" class="size-6" aria-hidden="true" />
+  <ng-content />
+</a>

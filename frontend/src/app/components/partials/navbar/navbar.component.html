@@ -51,23 +51,9 @@
           </span>
         </a>
         <div class="justify-end items-center flex-1 flex">
-          <a routerLink="/" class="lg:block text-gray-700 p-2 hidden">
-            <div class="sr-only">Search</div>
-            <lucide-angular
-              [img]="icons.Search"
-              class="size-6"
-              aria-hidden="true"
-            />
-          </a>
+          <app-nav-icon href="/" label="Search" [icon]="icons.Search" />
 
-          <a routerLink="/" class="lg:block text-gray-700 p-2 hidden ml-3">
-            <div class="sr-only">Account</div>
-            <lucide-angular
-              [img]="icons.User"
-              class="size-6"
-              aria-hidden="true"
-            />
-          </a>
+          <app-nav-icon href="/" label="Account" [icon]="icons.User" />
 
           <div class="lg:ml-6 flow-root ml-4">
             <a routerLink="/" class="p-2 items-center text-gray-700 flex -m-2">

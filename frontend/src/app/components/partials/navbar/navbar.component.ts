@@ -8,11 +8,12 @@ import {
   ShoppingCart,
   User,
 } from 'lucide-angular';
+import { NavIconComponent } from './components/nav-icon/nav-icon.component';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, LucideAngularModule],
+  imports: [RouterLink, LucideAngularModule, NavIconComponent],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
 })
