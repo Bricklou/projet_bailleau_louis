@@ -6,6 +6,9 @@
 
 @layer components {
   .app-outline-primary {
-    @apply focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-primary outline-none rounded-md;
+    @apply focus-visible:ring-2 ring-offset-2 ring-offset-white ring-primary outline-none rounded-md;
+  }
+  .link {
+    @apply font-semibold text-primary hover:text-primary-500;
   }
 }

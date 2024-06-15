@@ -1,0 +1,51 @@
+<main
+  class="lg:px-4 sm:py-48 top-24 px-6 flex-1 max-w-7xl w-full flex mx-auto flex-row items-center"
+>
+  <div class="flex flex-col mx-auto">
+    <p class="text-primary leading-8 font-semibold text-base">404</p>
+    <h1 class="sm:text-5xl text-gray-900 tracking-tight font-bold mt-4">
+      Page not found
+    </h1>
+    <p class="text-gray-600 leading-7 text-base mt-6">
+      Sorry, we couldn't find the page you're looking for.
+    </p>
+
+    <div class="mt-10">
+      <a
+        routerLink="/"
+        class="text-primary leading-7 font-semibold text-sm inline-flex items-center hover:text-primary-600 app-outline-primary transition-colors duration-200 ease-out"
+      >
+        <lucide-angular [img]="icons.ArrowLeft" class="size-5 mr-2" />
+        Back to home
+      </a>
+    </div>
+  </div>
+
+  <div class="hidden lg:block flex-1 relative h-96">
+    <svg
+      aria-hidden="true"
+      class="pointer-events-none absolute inset-0 h-full w-full fill-primary-400/80 px-16 [mask-image:radial-gradient(circle,black,transparent)]"
+    >
+      <defs>
+        <pattern
+          id="not-found"
+          width="16"
+          height="16"
+          patternUnits="userSpaceOnUse"
+          patternContentUnits="userSpaceOnUse"
+          x="0"
+          y="0"
+        >
+          <circle id="pattern-circle" cx="1" cy="1" r="2" />
+        </pattern>
+      </defs>
+
+      <rect
+        width="100%"
+        height="100%"
+        stroke-width="0"
+        fill="url(#not-found)"
+      />
+    </svg>
+  </div>
+</main>

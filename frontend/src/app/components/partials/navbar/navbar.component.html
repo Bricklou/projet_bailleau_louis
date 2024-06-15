@@ -53,7 +53,15 @@
         <div class="justify-end items-center flex-1 flex">
           <app-nav-icon href="/" label="Search" [icon]="icons.Search" />
 
-          <app-nav-icon href="/account" label="Account" [icon]="icons.User" />
+          @if (auth.currentUser | async) {
+            <app-nav-icon href="/account" label="Account" [icon]="icons.User" />
+          } @else {
+            <app-nav-icon
+              href="/auth/login"
+              label="Login"
+              [icon]="icons.LogIn"
+            />
+          }
 
           <div class="lg:ml-6 flow-root ml-4">
             <a
