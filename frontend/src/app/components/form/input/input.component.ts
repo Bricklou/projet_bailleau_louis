@@ -1,16 +1,11 @@
-import { Component, input } from '@angular/core';
+import { Directive } from '@angular/core';
 
-@Component({
-  selector: 'app-input',
+@Directive({
+  selector: '[appInput]',
   standalone: true,
-  imports: [],
-  templateUrl: './input.component.html',
-  styleUrl: './input.component.css',
+  host: {
+    class:
+      'block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6',
+  },
 })
-export class InputComponent {
-  public readonly id = input.required<string>();
-  public readonly inputName = input.required<string>();
-  public readonly autocomplete = input<string>();
-  public readonly required = input<boolean>();
-  public readonly inputType = input<string>();
-}
+export class InputDirective {}

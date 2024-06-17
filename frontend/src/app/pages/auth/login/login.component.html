@@ -13,15 +13,32 @@
     </div>
 
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-      <form class="space-y-6">
+      <form class="space-y-6" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        @if (error()) {
+          <span
+            role="alert"
+            class="bg-red-400 text-white inline-flex gap-2 items-center p-4 py-2 rounded-md w-full"
+          >
+            <lucide-angular
+              [img]="icons.CircleAlert"
+              class="size-5"
+              aria-hidden="true"
+            />
+            <span>{{ error() }}</span>
+          </span>
+        }
         <app-form-container>
           <app-label for="email">Email address</app-label>
-          <app-input
+          <input
+            appInput
             id="email"
-            inputName="email"
-            inputType="email"
+            name="email"
+            type="email"
+            autocomplete="email"
             [required]="true"
+            formControlName="email"
           />
+          <app-form-message [control]="f.email" />
         </app-form-container>
 
         <app-form-container>
@@ -35,18 +52,33 @@
           </div>
 
           <div class="mt-2">
-            <app-input
+            <input
+              appInput
               id="password"
-              inputName="password"
-              inputType="password"
+              name="password"
+              type="password"
               autocomplete="current-password"
               [required]="true"
+              formControlName="password"
             />
           </div>
+          <app-form-message [control]="f.password" />
         </app-form-container>
 
         <div>
-          <app-button type="submit">Sign In</app-button>
+          <button
+            appButton
+            type="submit"
+            [disabled]="loginForm.invalid || loading()"
+          >
+            @if (loading()) {
+              <lucide-angular
+                [img]="icons.Loader2"
+                class="size-5 animate-spin"
+              />
+            }
+            Sign In
+          </button>
         </div>
       </form>
 

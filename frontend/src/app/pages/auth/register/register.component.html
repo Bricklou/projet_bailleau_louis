@@ -16,20 +16,21 @@
       <form class="space-y-6">
         <app-form-container>
           <app-label for="first_name">First name</app-label>
-          <app-input id="first_name" inputName="first_name" [required]="true" />
+          <input appInput id="first_name" name="first_name" [required]="true" />
         </app-form-container>
 
         <app-form-container>
           <app-label for="last_name">Last name</app-label>
-          <app-input id="last_name" inputName="last_name" [required]="true" />
+          <input appInput id="last_name" name="last_name" [required]="true" />
         </app-form-container>
 
         <app-form-container>
           <app-label for="email">Email address</app-label>
-          <app-input
+          <input
+            appInput
             id="email"
-            inputName="email"
-            inputType="email"
+            name="email"
+            type="email"
             [required]="true"
           />
         </app-form-container>
@@ -37,10 +38,11 @@
         <app-form-container>
           <app-label for="password">Password</app-label>
           <div class="mt-2">
-            <app-input
+            <input
+              appInput
               id="password"
-              inputName="password"
-              inputType="password"
+              name="password"
+              type="password"
               autocomplete="new-password"
               [required]="true"
             />
@@ -51,10 +53,11 @@
           <app-label for="confirmation">Password confirmation</app-label>
 
           <div class="mt-2">
-            <app-input
+            <input
+              appInput
               id="confirmation"
-              inputName="confirmation"
-              inputType="password"
+              name="confirmation"
+              type="password"
               autocomplete="new-password"
               [required]="true"
             />
@@ -62,7 +65,7 @@
         </app-form-container>
 
         <div>
-          <app-button type="submit">Sign In</app-button>
+          <button appButton type="submit">Sign In</button>
         </div>
       </form>
 

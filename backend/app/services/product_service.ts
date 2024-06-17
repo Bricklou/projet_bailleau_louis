@@ -1,4 +1,4 @@
-import Product from '#models/product'
+import Product from '#models/database/product'
 import { inject } from '@adonisjs/core'
 
 @inject()
