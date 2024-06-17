@@ -1,1 +1,75 @@
-<p>register works!</p>
+<main class="flex-1">
+  <div class="flex flex-col justify-center px-6 py-32 lg:px-8">
+    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+      <lucide-angular
+        [img]="icons.ShoppingCart"
+        class="size-10 mx-auto text-primary"
+      />
+      <h2
+        class="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900"
+      >
+        Sign up to a new account
+      </h2>
+    </div>
+
+    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+      <form class="space-y-6">
+        <app-form-container>
+          <app-label for="first_name">First name</app-label>
+          <app-input id="first_name" inputName="first_name" [required]="true" />
+        </app-form-container>
+
+        <app-form-container>
+          <app-label for="last_name">Last name</app-label>
+          <app-input id="last_name" inputName="last_name" [required]="true" />
+        </app-form-container>
+
+        <app-form-container>
+          <app-label for="email">Email address</app-label>
+          <app-input
+            id="email"
+            inputName="email"
+            inputType="email"
+            [required]="true"
+          />
+        </app-form-container>
+
+        <app-form-container>
+          <app-label for="password">Password</app-label>
+          <div class="mt-2">
+            <app-input
+              id="password"
+              inputName="password"
+              inputType="password"
+              autocomplete="new-password"
+              [required]="true"
+            />
+          </div>
+        </app-form-container>
+
+        <app-form-container>
+          <app-label for="confirmation">Password confirmation</app-label>
+
+          <div class="mt-2">
+            <app-input
+              id="confirmation"
+              inputName="confirmation"
+              inputType="password"
+              autocomplete="new-password"
+              [required]="true"
+            />
+          </div>
+        </app-form-container>
+
+        <div>
+          <app-button type="submit">Sign In</app-button>
+        </div>
+      </form>
+
+      <p class="mt-10 text-center text-sm text-gray-500">
+        Already have an account?
+        <a routerLink="/auth/login" class="link leading-6">Login here.</a>
+      </p>
+    </div>
+  </div>
+</main>
