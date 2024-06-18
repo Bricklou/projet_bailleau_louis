@@ -20,7 +20,15 @@ router
   .group(() => {
     router.post('/register', [AuthController, 'register'])
     router.post('/', [AuthController, 'login'])
-    router.put('/', [UsersController, 'update']).middleware(middleware.jwt())
+    router.post('/refresh', [AuthController, 'refresh'])
+
+    router
+      .group(() => {
+        router.get('/', [AuthController, 'me'])
+        router.put('/', [UsersController, 'update'])
+        router.delete('/', [AuthController, 'logout'])
+      })
+      .middleware([middleware.jwt(), middleware.auth()])
   })
   .prefix('auth')
 

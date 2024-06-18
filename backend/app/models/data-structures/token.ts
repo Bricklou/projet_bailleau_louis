@@ -1,44 +1,46 @@
 import User from '#models/database/user'
 import env from '#start/env'
-import jwt, { Jwt } from 'jsonwebtoken'
+import jwt, { Jwt, JwtPayload } from 'jsonwebtoken'
+import { DateTime, Duration } from 'luxon'
 
-export abstract class Token {
+export interface AppJwtPayload {
+  userId: number
+  email: string
+}
+
+export class AccessToken {
   private userId: number
   private email: string
 
   constructor(
     user: User,
-    private duration: string
+    private duration: Duration = Duration.fromObject({ minute: 5 })
   ) {
     this.userId = user.id
     this.email = user.email
   }
 
-  toJWT(): string {
-    return jwt.sign({ id: this.userId, username: this.email }, env.get('APP_KEY'), {
-      expiresIn: this.duration,
-    })
+  get expiredIn(): Date {
+    return DateTime.now().plus(this.duration).toJSDate()
   }
 
-  static validate(token: string): Jwt {
+  toJWT(): string {
+    return jwt.sign(
+      { userId: this.userId, email: this.email } satisfies AppJwtPayload,
+      env.get('APP_KEY'),
+      {
+        expiresIn: this.duration.as('second'),
+      }
+    )
+  }
+
+  static validate(token: string): Jwt & { payload: JwtPayload } {
     return jwt.verify(token, env.get('APP_KEY'), {
       complete: true,
       algorithms: ['HS256'],
       clockTolerance: 0,
       ignoreExpiration: false,
       ignoreNotBefore: false,
-    })
-  }
-}
-
-export class AccessToken extends Token {
-  constructor(user: User) {
-    super(user, '10m')
-  }
-}
-
-export class RefreshToken extends Token {
-  constructor(user: User) {
-    super(user, '30d')
+    }) as Jwt & { payload: JwtPayload }
   }
 }
