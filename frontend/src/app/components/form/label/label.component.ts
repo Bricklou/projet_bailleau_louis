@@ -1,12 +1,12 @@
-import { Component, input } from '@angular/core';
+import { Directive, input } from '@angular/core';
 
-@Component({
-  selector: 'app-label',
+@Directive({
+  selector: '[appLabel]',
   standalone: true,
-  imports: [],
-  templateUrl: './label.component.html',
-  styleUrl: './label.component.css',
+  host: {
+    class: 'block text-sm font-medium leading-6 text-gray-900',
+  },
 })
-export class LabelComponent {
+export class LabelDirective {
   public readonly for = input.required<string>();
 }

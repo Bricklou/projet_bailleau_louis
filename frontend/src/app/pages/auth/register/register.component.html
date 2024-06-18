@@ -13,30 +13,61 @@
     </div>
 
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-      <form class="space-y-6">
+      <form
+        class="space-y-6"
+        [formGroup]="registerForm"
+        (ngSubmit)="onSubmit()"
+      >
+        @if (error()) {
+          <span
+            role="alert"
+            class="bg-red-400 text-white inline-flex gap-2 items-center p-4 py-2 rounded-md w-full"
+          >
+            <lucide-angular
+              [img]="icons.CircleAlert"
+              class="size-5"
+              aria-hidden="true"
+            />
+            <span>{{ error() }}</span>
+          </span>
+        }
         <app-form-container>
-          <app-label for="first_name">First name</app-label>
-          <input appInput id="first_name" name="first_name" [required]="true" />
-        </app-form-container>
-
-        <app-form-container>
-          <app-label for="last_name">Last name</app-label>
-          <input appInput id="last_name" name="last_name" [required]="true" />
-        </app-form-container>
-
-        <app-form-container>
-          <app-label for="email">Email address</app-label>
+          <label appLabel for="first_name">First name</label>
           <input
             appInput
-            id="email"
-            name="email"
-            type="email"
+            id="first_name"
+            name="first_name"
+            formControlName="first_name"
             [required]="true"
           />
         </app-form-container>
 
         <app-form-container>
-          <app-label for="password">Password</app-label>
+          <label appLabel for="last_name">Last name</label>
+          <input
+            appInput
+            id="last_name"
+            name="last_name"
+            formControlName="last_name"
+            [required]="true"
+          />
+        </app-form-container>
+
+        <app-form-container>
+          <label appLabel for="email">Email address</label>
+          <input
+            appInput
+            id="email"
+            name="email"
+            type="email"
+            formControlName="email"
+            [required]="true"
+            autocomplete="email"
+          />
+        </app-form-container>
+
+        <app-form-container>
+          <label appLabel for="password">Password</label>
           <div class="mt-2">
             <input
               appInput
@@ -44,21 +75,25 @@
               name="password"
               type="password"
               autocomplete="new-password"
+              formControlName="password"
               [required]="true"
             />
           </div>
         </app-form-container>
 
         <app-form-container>
-          <app-label for="confirmation">Password confirmation</app-label>
+          <label appLabel for="password_confirmation">
+            Password confirmation
+          </label>
 
           <div class="mt-2">
             <input
               appInput
-              id="confirmation"
-              name="confirmation"
+              id="password_confirmation"
+              name="password_confirmation"
               type="password"
               autocomplete="new-password"
+              formControlName="password_confirmation"
               [required]="true"
             />
           </div>
@@ -71,7 +106,12 @@
 
       <p class="mt-10 text-center text-sm text-gray-500">
         Already have an account?
-        <a routerLink="/auth/login" class="link leading-6">Login here.</a>
+        <a
+          routerLink="/auth/login"
+          queryParamsHandling="preserve"
+          class="link leading-6"
+          >Login here.</a
+        >
       </p>
     </div>
   </div>

@@ -10,7 +10,7 @@ import { ButtonDirective } from 'app/components/base/button/button.component';
 import { FormContainerComponent } from 'app/components/form/form-container/form-container.component';
 import { FormMessageComponent } from 'app/components/form/form-message/form-message.component';
 import { InputDirective } from 'app/components/form/input/input.component';
-import { LabelComponent } from 'app/components/form/label/label.component';
+import { LabelDirective } from 'app/components/form/label/label.component';
 import { AuthService } from 'app/services/auth.service';
 import {
   isInvalidCredentialsException,
@@ -31,7 +31,7 @@ import { first } from 'rxjs';
     LucideAngularModule,
     InputDirective,
     FormContainerComponent,
-    LabelComponent,
+    LabelDirective,
     ButtonDirective,
     RouterLink,
     FormMessageComponent,
