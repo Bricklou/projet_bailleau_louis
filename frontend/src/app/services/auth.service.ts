@@ -44,4 +44,8 @@ export class AuthService {
   public get isAuthenticated(): Observable<boolean> {
     return this.currentUser.asObservable().pipe(map((user) => Boolean(user)));
   }
+
+  public refresh() {
+    return this.httpClient.post<User>('/api/auth/refresh', {});
+  }
 }
