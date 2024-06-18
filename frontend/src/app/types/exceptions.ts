@@ -1,16 +1,23 @@
-interface HttpException {
-  name: string;
-  message: string;
-  status: number;
-}
+import { HttpErrorResponse } from '@angular/common/http';
 
 export function isInvalidCredentialsException(
+  error: HttpErrorResponse,
+): boolean {
+  return error.status === 401;
+}
+
+interface ValidationRuleException {
+  field: string;
+  message: string;
+  rule: string;
+}
+
+interface InvalidFieldException {
+  errors: ValidationRuleException[];
+}
+
+export function isInvalidFieldException(
   error: unknown,
-): error is HttpException {
-  return (
-    !!error &&
-    typeof error === 'object' &&
-    'name' in error &&
-    error.name === 'InvalidCredentialsException'
-  );
+): error is InvalidFieldException {
+  return !!error && typeof error === 'object' && 'errors' in error;
 }

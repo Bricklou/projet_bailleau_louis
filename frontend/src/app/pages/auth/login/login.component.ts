@@ -12,7 +12,10 @@ import { FormMessageComponent } from 'app/components/form/form-message/form-mess
 import { InputDirective } from 'app/components/form/input/input.component';
 import { LabelComponent } from 'app/components/form/label/label.component';
 import { AuthService } from 'app/services/auth.service';
-import { isInvalidCredentialsException } from 'app/types/exceptions';
+import {
+  isInvalidCredentialsException,
+  isInvalidFieldException,
+} from 'app/types/exceptions';
 import {
   CircleAlert,
   Loader2,
@@ -72,10 +75,6 @@ export class LoginComponent {
       return;
     }
 
-    const data = this.loginForm.value;
-
-    console.log(data);
-
     this.loading.set(true);
     this.auth
       .login(this.f.email.value, this.f.password.value)
@@ -89,8 +88,18 @@ export class LoginComponent {
         error: (error) => {
           this.loading.set(false);
           if (error instanceof HttpErrorResponse) {
-            if (isInvalidCredentialsException(error.error)) {
-              this.error.set(error.error.message);
+            console.log(error);
+            if (isInvalidCredentialsException(error)) {
+              this.error.set('Invalid credentials');
+              return;
+            }
+
+            if (error.status === 422 && isInvalidFieldException(error.error)) {
+              for (const e of error.error.errors) {
+                this.loginForm.get(e.field)?.setErrors({
+                  [e.rule]: e.message,
+                });
+              }
               return;
             }
           }
