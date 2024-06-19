@@ -94,6 +94,7 @@ export default class AuthController {
     }
 
     if (token.expiresAt < DateTime.now()) {
+      this.refreshTokenRepository.deleteToken(token)
       return response.unauthorized()
     }
 

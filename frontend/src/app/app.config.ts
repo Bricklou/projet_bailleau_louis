@@ -6,12 +6,12 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { jwtInterceptor } from './interceptors/jwt.interceptor';
+import { httpInterceptor } from './interceptors/http.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideExperimentalZonelessChangeDetection(),
-    provideHttpClient(withInterceptors([jwtInterceptor])),
+    provideHttpClient(withInterceptors([httpInterceptor])),
   ],
 };

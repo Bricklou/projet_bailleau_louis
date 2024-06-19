@@ -36,7 +36,16 @@ export class AuthService {
     );
   }
 
-  public logout(): void {
+  public logout(): Observable<void> {
+    return this.httpClient.delete('/api/auth').pipe(
+      map(() => {
+        this.currentUser.next(undefined);
+        this.tokenService.clearToken();
+      }),
+    );
+  }
+
+  public clearUser() {
     this.currentUser.next(undefined);
     this.tokenService.clearToken();
   }
@@ -46,6 +55,17 @@ export class AuthService {
   }
 
   public refresh() {
-    return this.httpClient.post<User>('/api/auth/refresh', {});
+    console.debug('Refresh access token');
+    return this.httpClient.post('/api/auth/refresh', {});
+  }
+
+  public fetchUser() {
+    console.debug('Fetching user');
+    return this.httpClient.get<User>('/api/auth').pipe(
+      map((data) => {
+        this.currentUser.next(data);
+        return data;
+      }),
+    );
   }
 }
