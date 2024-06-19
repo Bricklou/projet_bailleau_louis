@@ -32,4 +32,5 @@ router
 
 router.group(() => {
   router.get('/products', [ProductsController, 'getProducts'])
+  router.get('/products/:id', [ProductsController, 'getProduct'])
 })

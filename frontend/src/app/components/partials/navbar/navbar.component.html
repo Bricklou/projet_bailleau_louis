@@ -50,7 +50,9 @@
                 class="size-6"
                 aria-hidden="true"
               />
-              <span class="text-gray-700 font-medium text-sm ml-2">0</span>
+              <span class="text-gray-700 font-medium text-sm ml-2">{{
+                cartCount | async
+              }}</span>
               <div class="sr-only">items in cart, view bag</div>
             </a>
           </div>

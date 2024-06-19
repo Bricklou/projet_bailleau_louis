@@ -22,4 +22,10 @@ export default class ProductsController {
 
     return this.productPresenter.toPaginatedJSON(products)
   }
+
+  async getProduct({ params }: HttpContext) {
+    const product = await this.productRepository.getById(params.id)
+
+    return this.productPresenter.toJSON(product)
+  }
 }

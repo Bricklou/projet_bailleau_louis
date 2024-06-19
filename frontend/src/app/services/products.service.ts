@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Paginated } from 'app/types/models/paginated';
-import { ProductListItem } from 'app/types/models/product.model';
+import { Product, ProductListItem } from 'app/types/models/product.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -16,5 +16,9 @@ export class ProductsService {
         page: page.toString(),
       },
     });
+  }
+
+  public getProduct(id: string): Observable<Product> {
+    return this.httpClient.get<Product>(`/api/products/${id}`);
   }
 }

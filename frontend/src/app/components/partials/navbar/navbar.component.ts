@@ -12,6 +12,8 @@ import {
 import { NavIconComponent } from './components/nav-icon/nav-icon.component';
 import { AuthService } from '../../../services/auth.service';
 import { AsyncPipe } from '@angular/common';
+import { CartService } from 'app/services/cart.service';
+import { Observable, map } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -30,5 +32,12 @@ export class NavbarComponent {
     LogIn,
   };
 
-  public constructor(protected auth: AuthService) {}
+  public constructor(
+    protected auth: AuthService,
+    private card: CartService,
+  ) {}
+
+  protected get cartCount(): Observable<number> {
+    return this.card.products.pipe(map((products) => products.length));
+  }
 }

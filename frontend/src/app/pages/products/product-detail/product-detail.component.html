@@ -1,1 +1,85 @@
-<p>product-detail works!</p>
+@if (product$ | async; as product) {
+  <main
+    class="mx-auto max-w-2xl px-4 py-4 sm:px-6 sm:py-6 lg:max-w-7xl lg:px-8"
+  >
+    <div class="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8">
+      <div class="flex flex-col-reverse">
+        <div
+          class="max-w-2xl sm:block lg:max-w-none mt-6 mx-auto hidden w-full"
+        >
+          <div
+            class="grid grid-cols-4 gap-6"
+            role="tablist"
+            aria-orientation="horizontal"
+          >
+            @for (image of product.images; let i = $index; track image) {
+              <button
+                type="button"
+                class="relative flex h-24 cursor-pointer items-center content-center rounded-md bg-gray-100 text-sm uppercase text-gray-900"
+                role="tab"
+                aria-selected="true"
+                tabindex="0"
+                id="product-images-tab-0"
+              >
+                <span class="sr-only">Preview image {{ i }}</span>
+                <img
+                  src="{{ image }}"
+                  alt="Preview image {{ i }}"
+                  class="w-full h-full object-center object-cover"
+                />
+              </button>
+            }
+          </div>
+        </div>
+
+        <div class="aspect-square relative w-full">
+          <div role="tabpanel" tabindex="0">
+            <img
+              src="{{ product.images[0] }}"
+              alt="Product image"
+              class="h-full w-full object-contain object-center sm:rounded-lg bg-gray-100"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:mt-0 sm:px-0 sm:mt-16 px-4 mt-10">
+        <h1 class="text-gray-900 tracking-tight font-bold text-3xl">
+          {{ product.title }}
+        </h1>
+        <div class="mt-3">
+          <h2 class="sr-only">Product information</h2>
+          <p class="text-gray-900 tracking-tight text-3xl">
+            {{ product.price }}€
+          </p>
+        </div>
+
+        <div class="mt-3">
+          <h3 class="sr-only">Description</h3>
+          <div class="text-gray-700 text-base">
+            <p>{{ product.description }}</p>
+          </div>
+        </div>
+
+        <div class="mt-6">
+          @if (isInCart | async) {
+            <button
+              appButton
+              type="button"
+              (click)="removeFromCart(product)"
+              class="bg-gray-900 hover:bg-gray-800"
+            >
+              <lucide-angular [img]="icons.X" class="size-6" />
+              Remove from cart
+            </button>
+          } @else {
+            <button appButton type="button" (click)="addToCart(product)">
+              <lucide-angular [img]="icons.ShoppingCart" class="size-6" />
+              Add to cart
+            </button>
+          }
+        </div>
+      </div>
+    </div>
+  </main>
+}
