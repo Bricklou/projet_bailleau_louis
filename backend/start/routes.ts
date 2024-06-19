@@ -12,7 +12,6 @@ import { middleware } from './kernel.js'
 const ProductsController = () => import('#controllers/products_controller')
 
 const AuthController = () => import('#controllers/auth_controller')
-const UsersController = () => import('#controllers/users_controller')
 
 router.get('/', async () => 'It works!')
 
@@ -25,7 +24,6 @@ router
     router
       .group(() => {
         router.get('/', [AuthController, 'me'])
-        router.put('/', [UsersController, 'update'])
         router.delete('/', [AuthController, 'logout'])
       })
       .middleware([middleware.jwt(), middleware.auth()])
