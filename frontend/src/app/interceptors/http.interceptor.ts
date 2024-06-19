@@ -13,7 +13,7 @@ export const httpInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService);
   const tokenService = inject(TokenService);
 
-  req = req.clone({ withCredentials: true });
+  req = tokenService.updateRequest(req);
 
   return next(req).pipe(
     tap((event: HttpEvent<unknown>) => {

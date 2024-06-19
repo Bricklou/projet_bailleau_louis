@@ -1,12 +1,11 @@
-import { HttpResponse } from '@angular/common/http';
+import { HttpRequest, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TokenService {
-  private accessToken = new BehaviorSubject<string | undefined>(undefined);
+  private accessToken: string | undefined = undefined;
 
   public getTokenFromResponse(response: HttpResponse<unknown>) {
     const authorization = response.headers.get('authorization');
@@ -14,14 +13,24 @@ export class TokenService {
     if (authorization) {
       const bearer = authorization.split(' ')[1];
       if (bearer) {
-        this.accessToken.next(bearer);
+        this.accessToken = bearer;
       } else {
-        this.accessToken.next(undefined);
+        this.accessToken = undefined;
       }
     }
   }
 
+  public updateRequest(request: HttpRequest<unknown>): HttpRequest<unknown> {
+    if (this.accessToken) {
+      return request.clone({
+        setHeaders: { Authorization: `Bearer ${this.accessToken}` },
+      });
+    }
+
+    return request;
+  }
+
   public clearToken() {
-    this.accessToken.next(undefined);
+    this.accessToken = undefined;
   }
 }
