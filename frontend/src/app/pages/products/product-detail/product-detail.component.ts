@@ -1,4 +1,4 @@
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, NgClass } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ButtonDirective } from 'app/components/base/button/button.component';
@@ -11,13 +11,14 @@ import { Observable, map, switchMap } from 'rxjs';
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [AsyncPipe, LucideAngularModule, ButtonDirective],
+  imports: [AsyncPipe, LucideAngularModule, ButtonDirective, NgClass],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.css',
 })
 export class ProductDetailComponent {
   protected product$: Observable<Product>;
   protected readonly icons = { ShoppingCart, X };
+  protected selectedImage = 0;
 
   public constructor(
     private productsService: ProductsService,
@@ -42,5 +43,9 @@ export class ProductDetailComponent {
     return this.cartService.products.pipe(
       map((products) => products.some((p) => p.quantity > 0)),
     );
+  }
+
+  protected onImageSelected(index: number) {
+    this.selectedImage = index;
   }
 }

@@ -20,6 +20,11 @@
                 aria-selected="true"
                 tabindex="0"
                 id="product-images-tab-0"
+                (click)="onImageSelected(i)"
+                [ngClass]="{
+                  'ring ring2 ring-offset-2 ring-primary ring-offset-white':
+                    selectedImage === i,
+                }"
               >
                 <span class="sr-only">Preview image {{ i }}</span>
                 <img
@@ -35,9 +40,9 @@
         <div class="aspect-square relative w-full">
           <div role="tabpanel" tabindex="0">
             <img
-              src="{{ product.images[0] }}"
+              src="{{ product.images[selectedImage] }}"
               alt="Product image"
-              class="h-full w-full object-contain object-center sm:rounded-lg bg-gray-100"
+              class="h-full w-full max-h-[70vh] object-contain object-center sm:rounded-lg bg-gray-100"
             />
           </div>
         </div>
