@@ -4,7 +4,6 @@ import {
   LogIn,
   LucideAngularModule,
   Menu,
-  Search,
   ShoppingBasket,
   ShoppingCart,
   User,
@@ -25,7 +24,6 @@ import { Observable, map } from 'rxjs';
 export class NavbarComponent {
   protected readonly icons = {
     Menu,
-    Search,
     ShoppingCart,
     User,
     ShoppingBasket,

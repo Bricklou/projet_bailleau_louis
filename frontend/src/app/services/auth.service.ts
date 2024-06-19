@@ -4,8 +4,10 @@ import {
   BehaviorSubject,
   Observable,
   catchError,
+  connectable,
   map,
   of,
+  share,
   switchMap,
   tap,
 } from 'rxjs';
@@ -78,6 +80,7 @@ export class AuthService {
     return this.httpClient
       .post<{ access: string }>('/api/auth/refresh', {})
       .pipe(
+        share(),
         switchMap((data) => {
           this.tokenService.setToken(data.access);
           return of();

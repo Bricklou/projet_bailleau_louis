@@ -5,11 +5,6 @@ import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   {
-    path: '',
-    loadComponent: () =>
-      import('./pages/home/home.component').then((m) => m.HomeComponent),
-  },
-  {
     path: 'cart',
     loadComponent: () =>
       import('./pages/user/cart/cart.component').then((m) => m.CartComponent),
@@ -67,7 +62,7 @@ export const routes: Routes = [
     ],
   },
   {
-    path: 'products',
+    path: '',
     children: [
       {
         path: '',
@@ -77,7 +72,7 @@ export const routes: Routes = [
           ),
       },
       {
-        path: ':id',
+        path: 'products/:id',
         loadComponent: () =>
           import(
             './pages/products/product-detail/product-detail.component'

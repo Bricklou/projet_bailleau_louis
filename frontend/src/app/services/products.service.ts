@@ -10,10 +10,14 @@ import { Observable } from 'rxjs';
 export class ProductsService {
   constructor(private httpClient: HttpClient) {}
 
-  public getProducts(page = 1): Observable<Paginated<ProductListItem>> {
+  public getProducts(
+    search = '',
+    page = 1,
+  ): Observable<Paginated<ProductListItem>> {
     return this.httpClient.get<Paginated<ProductListItem>>('/api/products', {
       params: {
         page: page.toString(),
+        search,
       },
     });
   }

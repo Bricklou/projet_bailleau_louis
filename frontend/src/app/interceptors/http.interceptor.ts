@@ -2,7 +2,7 @@ import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { AuthService } from 'app/services/auth.service';
 import { TokenService } from 'app/services/token.service';
-import { catchError, switchMap, throwError } from 'rxjs';
+import { catchError, of, switchMap, throwError } from 'rxjs';
 
 export const httpInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService);
@@ -26,14 +26,17 @@ export const httpInterceptor: HttpInterceptorFn = (req, next) => {
       }
 
       // If it is a 401 but come from a refresh request, logout the user and skip it
-      /*if (req.url === '/api/auth/refresh') {
+      if (req.url === '/api/auth/refresh') {
         authService.clearUser();
         return throwError(() => error);
       }
 
       // Finally, try to refresh the user
-      return authService.refresh().pipe(switchMap(() => next(req)));*/
-      return throwError(() => error);
+      return authService.refresh().pipe(
+        switchMap(() => authService.fetchUser()),
+        catchError(() => of()),
+        switchMap(() => next(req)),
+      );
     }),
   );
 };

@@ -8,7 +8,7 @@ export class ProductRepository {
     return Product.query()
       .preload('images')
       .preload('thumbnail')
-      .whereILike('name', `%${query}%`)
+      .whereILike('title', `%${query}%`)
       .paginate(1, 10)
   }
 
