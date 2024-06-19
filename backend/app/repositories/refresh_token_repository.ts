@@ -4,13 +4,11 @@ import { randomUUID } from 'node:crypto'
 import { DateTime } from 'luxon'
 
 export class RefreshTokenRepository {
-  createToken(user: User): Promise<Token> {
-    const token = new Token()
-    token.related('user').associate(user)
-    token.token = randomUUID()
-    token.expiresAt = DateTime.now().plus({ days: 30 })
-
-    return token.save()
+  async createToken(user: User): Promise<Token> {
+    return user.related('tokens').create({
+      token: randomUUID(),
+      expiresAt: DateTime.now().plus({ days: 30 }),
+    })
   }
 
   find(value: string): Promise<Token | null> {

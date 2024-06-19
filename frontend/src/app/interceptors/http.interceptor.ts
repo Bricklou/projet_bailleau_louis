@@ -1,13 +1,8 @@
-import {
-  HttpErrorResponse,
-  HttpEvent,
-  HttpInterceptorFn,
-  HttpResponse,
-} from '@angular/common/http';
+import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { AuthService } from 'app/services/auth.service';
 import { TokenService } from 'app/services/token.service';
-import { catchError, switchMap, tap, throwError } from 'rxjs';
+import { catchError, switchMap, throwError } from 'rxjs';
 
 export const httpInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService);
@@ -16,11 +11,6 @@ export const httpInterceptor: HttpInterceptorFn = (req, next) => {
   req = tokenService.updateRequest(req);
 
   return next(req).pipe(
-    tap((event: HttpEvent<unknown>) => {
-      if (event instanceof HttpResponse) {
-        tokenService.getTokenFromResponse(event);
-      }
-    }),
     catchError((error: Error) => {
       // Is this an http error
       if (!(error instanceof HttpErrorResponse)) {

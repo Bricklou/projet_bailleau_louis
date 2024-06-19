@@ -1,0 +1,38 @@
+<div
+  class="sm:border sm:rounded-lg shadow-sm bg-white border-gray-200 border-t border-b"
+>
+  <h3 class="sr-only">
+    Order placed on
+    <time datetime="2021-06-06">June 6, 2021</time>
+  </h3>
+
+  <div class="sm:p-6 sm:gap-x-6 sm:grid-cols-4 sm:grid p-4 items-center flex">
+    <dl
+      class="lg:col-span-2 sm:grid-cols-3 sm:col-span-3 text-sm gap-x-6 grid-cols-2"
+    >
+      <div>
+        <dt class="text-gray-900 font-medium">Order number</dt>
+        <dd class="text-gray-500 mt-1">blabla</dd>
+      </div>
+      <div class="sm:block hidden">
+        <dt class="text-gray-900 font-medium">Date placed</dt>
+        <dd class="text-gray-500 mt-1">
+          <time datetime="2021-06-06">June 6, 2021</time>
+        </dd>
+      </div>
+      <div>
+        <dt class="text-gray-900 font-medium">Total</dt>
+        <dd class="text-gray-500 mt-1">$100.00</dd>
+      </div>
+    </dl>
+
+    <div class="content-end items-center flex">
+      <a
+        routerLink="/order/1"
+        class="shadow-sm text-gray-700 font-medium text-sm py-2 px-2.5 border border-gray-500 rounded-md items-center content-center flex"
+      >
+        View order
+      </a>
+    </div>
+  </div>
+</div>

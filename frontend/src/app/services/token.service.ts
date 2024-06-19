@@ -1,4 +1,4 @@
-import { HttpRequest, HttpResponse } from '@angular/common/http';
+import { HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -7,17 +7,8 @@ import { Injectable } from '@angular/core';
 export class TokenService {
   private accessToken: string | undefined = undefined;
 
-  public getTokenFromResponse(response: HttpResponse<unknown>) {
-    const authorization = response.headers.get('authorization');
-
-    if (authorization) {
-      const bearer = authorization.split(' ')[1];
-      if (bearer) {
-        this.accessToken = bearer;
-      } else {
-        this.accessToken = undefined;
-      }
-    }
+  public setToken(token: string) {
+    this.accessToken = token;
   }
 
   public updateRequest(request: HttpRequest<unknown>): HttpRequest<unknown> {

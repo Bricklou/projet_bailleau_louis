@@ -1,18 +1,25 @@
-import { ProductService } from '#services/product_service'
 import { inject } from '@adonisjs/core'
 import { HttpContext } from '@adonisjs/core/http'
+import { ProductRepository } from '../repositories/product_repository.js'
+import { ProductPresenter } from '../presenters/product_presenter.js'
 
 @inject()
 export default class ProductsController {
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productRepository: ProductRepository,
+    private productPresenter: ProductPresenter
+  ) {}
 
-  getProducts({ request }: HttpContext) {
+  async getProducts({ request }: HttpContext) {
     const { search } = request.qs()
 
     if (!search || typeof search !== 'string' || search.length <= 0) {
-      return this.productService.getAll()
+      const products = await this.productRepository.getAll()
+      return this.productPresenter.toPaginatedJSON(products)
     }
 
-    return this.productService.searchProducts(search)
+    const products = await this.productRepository.searchProducts(search)
+
+    return this.productPresenter.toPaginatedJSON(products)
   }
 }

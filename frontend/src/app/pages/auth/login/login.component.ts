@@ -88,7 +88,6 @@ export class LoginComponent {
         error: (error) => {
           this.loading.set(false);
           if (error instanceof HttpErrorResponse) {
-            console.log(error);
             if (isInvalidCredentialsException(error)) {
               this.error.set('Invalid credentials');
               return;

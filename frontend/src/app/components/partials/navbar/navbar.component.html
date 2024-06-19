@@ -12,34 +12,7 @@
             <lucide-angular [img]="icons.Search" class="size-6" />
           </a>
         </div>
-        <div class="lg:self-stretch lg:flex-1 lg:block hidden">
-          <div class="h-full flex">
-            <div class="flex space-x-8">
-              <div class="relative flex">
-                <button
-                  class="ease-out duration-200 transition-colors color text-gray-700 font-medium text-sm content-center items-center flex z-10 relative"
-                >
-                  Women
-                  <span
-                    class="md:transform md:mt-5 ease-out duration-200 transition-colors h-0.5 bottom-0 inset-x-0 absolute"
-                    aria-hidden="true"
-                  ></span>
-                </button>
-              </div>
-              <div class="relative flex">
-                <button
-                  class="ease-out duration-200 transition-colors color text-gray-700 font-medium text-sm content-center items-center flex z-10 relative"
-                >
-                  Men
-                  <span
-                    class="md:transform md:mt-5 ease-out duration-200 transition-colors h-0.5 bottom-0 inset-x-0 absolute"
-                    aria-hidden="true"
-                  ></span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div class="lg:self-stretch lg:flex-1 lg:block hidden"></div>
         <a routerLink="/" class="inline-flex gap-2 items-center">
           <lucide-angular
             [img]="icons.ShoppingCart"
@@ -47,14 +20,18 @@
             aria-hidden="true"
           />
           <span class="text-primary-600 font-medium hidden lg:block">
-            The <span class="text-primary-400 font-bold">ClothingStore</span>
+            The <span class="text-primary-400 font-bold">Store</span>
           </span>
         </a>
         <div class="justify-end items-center flex-1 flex">
           <app-nav-icon href="/" label="Search" [icon]="icons.Search" />
 
-          @if (auth.currentUser | async) {
-            <app-nav-icon href="/account" label="Account" [icon]="icons.User" />
+          @if (auth.isAuthenticated | async) {
+            <app-nav-icon
+              href="/user/orders"
+              label="Account"
+              [icon]="icons.User"
+            />
           } @else {
             <app-nav-icon
               href="/auth/login"

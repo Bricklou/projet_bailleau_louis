@@ -32,8 +32,10 @@ export default class AuthController {
         expires: refreshToken.expiresAt.toJSDate(),
         secure: true,
       })
-      .header('Authorization', `Bearer ${accessToken.toJWT()}`)
-      .json(this.userPresenter.toJSON(user))
+      .json({
+        user: this.userPresenter.toJSON(user),
+        access: accessToken.toJWT(),
+      })
   }
 
   async register({ request, response }: HttpContext) {
@@ -51,8 +53,10 @@ export default class AuthController {
         expires: refreshToken.expiresAt.toJSDate(),
         secure: true,
       })
-      .header('Authorization', `Bearer ${accessToken.toJWT()}`)
-      .json(this.userPresenter.toJSON(user))
+      .json({
+        user: this.userPresenter.toJSON(user),
+        access: accessToken.toJWT(),
+      })
   }
 
   async logout({ request, response }: HttpContext) {
@@ -90,18 +94,25 @@ export default class AuthController {
     const token = await this.refreshTokenRepository.find(tokenValue)
 
     if (!token) {
-      return response.unauthorized()
+      return response.clearCookie('token').unauthorized()
     }
 
     if (token.expiresAt < DateTime.now()) {
       this.refreshTokenRepository.deleteToken(token)
-      return response.unauthorized()
+      return response.clearCookie('token').unauthorized()
     }
 
     await token.load('user')
 
+    if (!token.user) {
+      console.error('Token has no user')
+      return response.clearCookie('token').unauthorized()
+    }
+
     const accessToken = new AccessToken(token.user)
 
-    return response.header('Authorization', `Bearer ${accessToken.toJWT()}`).ok('')
+    return response.json({
+      access: accessToken.toJWT(),
+    })
   }
 }

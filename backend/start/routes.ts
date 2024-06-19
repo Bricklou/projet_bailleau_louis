@@ -30,8 +30,6 @@ router
   })
   .prefix('auth')
 
-router
-  .group(() => {
-    router.get('/products', [ProductsController, 'getProducts'])
-  })
-  .middleware(middleware.jwt())
+router.group(() => {
+  router.get('/products', [ProductsController, 'getProducts'])
+})
