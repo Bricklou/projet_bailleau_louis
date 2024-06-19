@@ -26,13 +26,14 @@ export const httpInterceptor: HttpInterceptorFn = (req, next) => {
       }
 
       // If it is a 401 but come from a refresh request, logout the user and skip it
-      if (req.url === '/api/auth/refresh') {
+      /*if (req.url === '/api/auth/refresh') {
         authService.clearUser();
         return throwError(() => error);
       }
 
       // Finally, try to refresh the user
-      return authService.refresh().pipe(switchMap(() => next(req)));
+      return authService.refresh().pipe(switchMap(() => next(req)));*/
+      return throwError(() => error);
     }),
   );
 };

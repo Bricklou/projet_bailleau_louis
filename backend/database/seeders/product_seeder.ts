@@ -1,5 +1,4 @@
 import Product from '#models/database/product'
-import Image from '#models/database/image'
 import { BaseSeeder } from '@adonisjs/lucid/seeders'
 import Category from '#models/database/category'
 
